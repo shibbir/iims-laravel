@@ -1,4 +1,4 @@
-# IIMSApp - CodeIgniter Version
+# IIMSApp - Laravel Version
 
 IIMS is an simple easy-to-use, online inventory and invoice management system that also help you manage your customers, employees, products.
 

@@ -1,0 +1,28 @@
+{
+    "name": "IIMSApp",
+    "version": "1.0",
+    "authors": [
+        "Shibbir Ahmed <shibbir.cse@gmail.com>"
+    ],
+    "description": "Inventory & Invoice Management System",
+    "license": "MIT",
+    "homepage": "http://iims.shibbir.net/",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "public/bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "jquery": "2.*",
+        "bootstrap": "2.*",
+        "fontawesome": "3.*",
+        "angular": null,
+        "underscore": null,
+        "modernizr": "2.*",
+        "highcharts.com": "3.*",
+        "html5shiv": null
+    }
+}
