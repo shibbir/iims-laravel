@@ -6,36 +6,34 @@ var gulp = require("gulp"),
 
 gulp.task("css", function() {
     return gulp.src([
-            "content/css/kendo.common.min.css",
-            "content/css/kendo.bootstrap.min.css",
-            "content/css/bootstrap.css",
-            "content/css/bootstrap-responsive.css",
-            "content/css/font-awesome.css",
-            "content/css/style.css"
+            "public/bower_components/bootstrap/docs/assets/css/bootstrap.css",
+            "public/bower_components/bootstrap/docs/assets/css/bootstrap-responsive.css",
+            "public/bower_components/fontawesome/css/font-awesome.css",
+            "public/css/style.css"
         ])
         .pipe(concat("all.css"))
-        .pipe(gulp.dest("content/css/"))
+        .pipe(gulp.dest("public/css/"))
         .pipe(rename({ suffix: ".min" }))
         .pipe(minifycss())
-        .pipe(gulp.dest("content/css/"));
+        .pipe(gulp.dest("public/css/"));
 });
 
 gulp.task("scripts", function() {
     return gulp.src([
-            "content/js/libs/bootstrap.js",
-            "content/js/libs/kendo.web.min.js",
-            "content/js/libs/spin.min.js",
-            "content/js/libs/handlebars-v1.3.0.js",
-            "content/js/libs/highcharts.src.js",
-            "content/js/libs/jquery.printPage.js",
-            "content/js/app.js",
-            "content/js/custom-modules.js"
+            "public/bower_components/bootstrap/docs/assets/js/bootstrap.js",
+            "public/js/libs/kendo.web.min.js",
+            "public/js/libs/spin.min.js",
+            "public/bower_components/angular/angular.js",
+            "public/bower_components/highcharts.com/js/highcharts.src.js",
+            "public/js/libs/jquery.printPage.js",
+            "public/js/app.js",
+            "public/js/custom-modules.js"
         ])
         .pipe(concat("all.js"))
-        .pipe(gulp.dest("content/js/"))
+        .pipe(gulp.dest("public/js/"))
         .pipe(rename({ suffix: ".min" }))
         .pipe(uglify())
-        .pipe(gulp.dest("content/js/"));
+        .pipe(gulp.dest("public/js/"));
 });
 
 gulp.task("cssForPrintPage", function() {
@@ -79,8 +77,8 @@ gulp.task("scriptsForWelcomePage", function() {
 });
 
 gulp.task("default", function() {
-    //gulp.run("css");
-    //gulp.run("scripts");
+    gulp.run("css");
+    gulp.run("scripts");
     //gulp.run("cssForPrintPage");
     gulp.run("cssForWelcomePage");
     gulp.run("scriptsForWelcomePage");
