@@ -8,6 +8,13 @@
 
     <title>IIMS -- Login to access Dashboard</title>
 
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="IIMS" />
+    <meta property="og:url" content="http://iims.shibbir.net/" />
+    <meta property="og:title" content="IIMS: Inventory & Invoice Management System" />
+    <meta property="og:image" content="" />
+    <meta property="og:description" content="IIMS is a simple easy-to-use, online inventory and invoice management system that also help you manage your customers, employees, products." />
+
     {{ HTML::style('css/welcome.min.css') }}
 
     <!--[if IE 7]>

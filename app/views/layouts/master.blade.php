@@ -8,6 +8,13 @@
 
     <title>IIMS -- <?=$title?></title>
 
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="IIMS" />
+    <meta property="og:url" content="http://iims.shibbir.net/" />
+    <meta property="og:title" content="IIMS: Inventory & Invoice Management System" />
+    <meta property="og:image" content="" />
+    <meta property="og:description" content="IIMS is a simple easy-to-use, online inventory and invoice management system that also help you manage your customers, employees, products." />
+
     {{ HTML::style('css/all.min.css') }}
 
     <!--[if IE 7]>
@@ -17,10 +24,8 @@
     <!--[if lt IE 9]>
     {{ HTML::script('bower_components/html5shiv/dist/html5shiv.js') }}
     <![endif]-->
-
-    {{ HTML::script('bower_components/jquery/jquery.min.js') }}
 </head>
-<body>
+<body ng-app="iimsApp">
     <div id="container-spinner" class="hide">
         <div id="spinner"></div>
         <div class="pager">Loading Content ...</div>
@@ -75,6 +80,17 @@
             <a href="http://shibbir.net/" target="blank">Shibbir Ahmed</a>. All rights reserved.
         </p>
     </div>
-    {{ HTML::script('js/all.min.js') }}
+    {{ HTML::script('bower_components/jquery/jquery.min.js') }}
+    {{ HTML::script('bower_components/bootstrap/docs/assets/js/bootstrap.js') }}
+    {{ HTML::script('js/libs/kendo.web.min.js') }}
+    {{ HTML::script('js/libs/spin.min.js') }}
+    {{ HTML::script('bower_components/angular/angular.js') }}
+    {{ HTML::script('bower_components/highcharts.com/js/highcharts.src.js') }}
+    {{ HTML::script('js/libs/jquery.printPage.js') }}
+    {{ HTML::script('js/application/app.js') }}
+    {{ HTML::script('js/application/controllers/dashboard-controller.js') }}
+    {{ HTML::script('js/application/services/api-service.js') }}
+    {{ HTML::script('js/app.js') }}
+    {{ HTML::script('js/custom-modules.js') }}
 </body>
 </html>

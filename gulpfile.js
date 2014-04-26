@@ -26,6 +26,9 @@ gulp.task("scripts", function() {
             "public/bower_components/angular/angular.js",
             "public/bower_components/highcharts.com/js/highcharts.src.js",
             "public/js/libs/jquery.printPage.js",
+            "public/js/application/app.js",
+            "public/js/application/controllers/dashboard-controller.js",
+            "public/js/application/services/api-service.js",
             "public/js/app.js",
             "public/js/custom-modules.js"
         ])

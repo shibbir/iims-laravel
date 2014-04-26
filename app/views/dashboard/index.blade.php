@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="row-fluid">
+<div class="row-fluid" ng-controller="dashboardCtrl">
     <div class="span6">
         <div class="widget">
-            <div class="widget-header"><h4>Quick Dashbaord</h4></div>
+            <div class="widget-header"><h4>Quick Dashboard</h4></div>
             <div class="widget-body">
                 <ul class="cpanel">
                     <li><a class="button1" href="user/profile">My Profile</a></li>
@@ -23,7 +23,7 @@
                     <div class="span6">
                         <h4>Organization Information</h4>
                     </div>
-                    <div ng-show="organizations">
+                    <div ng-if="organization">
                         <div class="span6 textRight">
                             <a class="btn btn-primary organization-edit-modal" data-target="#ModalOrganizationEdit" data-toggle="modal">Edit</a>
                         </div>
@@ -31,10 +31,24 @@
                 </div>
             </div>
             <div class="widget-body">
-                <?=$this->load->view('organization/modal-add-organization')?>
-                <?=$this->load->view('organization/modal-edit-organization')?>
+                <?php
+                    //echo $this->load->view('organization/modal-add-organization');
+                    //echo $this->load->view('organization/modal-edit-organization');
+                ?>
 
-                <div id="placeholder-organization"></div>
+                <div ng-if="organization">
+                    <h4>[[ organization.title ]]</h4>
+                    <small>[[ organization.subTitle ]]</small>
+                    <address>[[ organization.address ]]</address>
+                    <p><span class="label label-important">Mobile</span> [[ organization.mobile ]]</p>
+                    <p><span class="label label-important">Phone</span> [[ organization.phone ]]</p>
+                    <p><span class="label label-info">Email</span> [[ organization.email ]]</p>
+                    <p><span class="label label-info">Website</span> <a target="_blank" href="[[ organization.website ]]">[[ organization.website ]]</a></p>
+                </div>
+                <div ng-if="!organization">
+                    <div class="pager text-error"><strong>Please add your organization information.</strong></div>
+                    <a href="#ModalOrganizationAdd" role="button" class="btn btn-success" data-toggle="modal"><i class="icon-plus icon-white icon-large"></i> Add Organization Info</a>
+                </div>
             </div>
         </div>
     </div>
@@ -63,22 +77,8 @@
     </div>
 </div>
 
-<script id="template-organization" type="text/x-handlebars-template">
-    {{#if ID}}
-        <h4>{{Title}}</h4>
-        <small>{{SubTitle}}</small>
-        <address>{{{Address}}}</address>
-        <p><span class="label label-important">Mobile</span> {{Mobile}}</p>
-        <p><span class="label label-important">Phone</span> {{Phone}}</p>
-        <p><span class="label label-info">Email</span> {{Email}}</p>
-        <p><span class="label label-info">Website</span> <a target="_blank" href="{{Website}}">{{Website}}</a></p>
-    {{else}}
-        <div class="pager text-error"><strong>Please add your organization information.</strong></div>
-        <a href="#ModalOrganizationAdd" role="button" class="btn btn-success" data-toggle="modal"><i class="icon-plus icon-white icon-large"></i> Add Organization Info</a>
-    {{/if}}
-</script>
-
 <script>
+    /*
     $(function() {
         function reloadInventoryChart() {
             $('#inventory-chart').html('');
@@ -139,5 +139,6 @@
 
         renderOrganization();
     });
+    */
 </script>
 @stop

@@ -10,11 +10,14 @@
 		"classmap": [
 			"app/commands",
 			"app/controllers",
-			"app/models",
+			"app/IIMS/Models",
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
-		]
+		],
+        "psr-4": {
+            "IIMS\\": "app/IIMS"
+        }
 	},
 	"scripts": {
 		"post-install-cmd": [
