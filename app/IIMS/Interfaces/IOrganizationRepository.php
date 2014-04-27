@@ -1,8 +1,7 @@
 <?php namespace IIMS\Interfaces;
 
-interface IOrganizationRepository {
-
+interface IOrganizationRepository
+{
     public function getOrganization($id);
-
-    public function editOrganization($id);
+    public function editOrganization($id, $input);
 }

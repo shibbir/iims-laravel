@@ -10,9 +10,11 @@ class OrganizationRepository implements IOrganizationRepository {
         return Organization::find($id);
     }
 
-    public function editOrganization($id)
+    public function editOrganization($id, $input)
     {
-        $organization = Organization::find($id);
-        return $organization;
+        $organization = Organization::findOrFail($id);
+        $organization->fill($input);
+
+        $organization->save();
     }
 }

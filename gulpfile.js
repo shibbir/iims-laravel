@@ -9,6 +9,7 @@ gulp.task("css", function() {
             "public/bower_components/bootstrap/docs/assets/css/bootstrap.css",
             "public/bower_components/bootstrap/docs/assets/css/bootstrap-responsive.css",
             "public/bower_components/fontawesome/css/font-awesome.css",
+            "public/bower_components/toastr/toastr.css",
             "public/css/style.css"
         ])
         .pipe(concat("all.css"))
@@ -80,8 +81,8 @@ gulp.task("scriptsForWelcomePage", function() {
 });
 
 gulp.task("default", function() {
-    gulp.run("css");
-    gulp.run("scripts");
+    //gulp.run("css");
+    //gulp.run("scripts");
     //gulp.run("cssForPrintPage");
     gulp.run("cssForWelcomePage");
     gulp.run("scriptsForWelcomePage");

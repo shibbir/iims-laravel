@@ -31,10 +31,8 @@
                 </div>
             </div>
             <div class="widget-body">
-                <?php
-                    //echo $this->load->view('organization/modal-add-organization');
-                    //echo $this->load->view('organization/modal-edit-organization');
-                ?>
+                @include('organization.organization-add-modal')
+                @include('organization.organization-edit-modal')
 
                 <div ng-if="organization">
                     <h4>[[ organization.title ]]</h4>

@@ -23,6 +23,7 @@
         "underscore": null,
         "modernizr": "2.*",
         "highcharts.com": "3.*",
-        "html5shiv": null
+        "html5shiv": null,
+        "toastr": null
     }
 }

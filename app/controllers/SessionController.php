@@ -1,6 +1,6 @@
 <?php
 
-class SessionsController extends \BaseController {
+class SessionController extends \BaseController {
 
 	public function create()
 	{
@@ -8,7 +8,7 @@ class SessionsController extends \BaseController {
         {
             return Redirect::dashboard();
         }
-        return View::make('layouts.welcome');
+        return View::make('session.create');
 	}
 
 	public function store()
