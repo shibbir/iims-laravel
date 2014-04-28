@@ -8,3 +8,5 @@ Route::get('logout', ['as' => 'logout', 'uses' => 'SessionController@destroy']);
 Route::resource('sessions', 'SessionController', ['only' => ['create', 'store', 'destroy']]);
 
 Route::resource('organizations', 'OrganizationController', ['only' => ['show', 'update']]);
+
+Route::resource('customers', 'CustomerController');

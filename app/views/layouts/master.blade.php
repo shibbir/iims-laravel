@@ -62,7 +62,7 @@
                     <ul class="nav">
                         <li class="active">{{ HTML::link('/dashboard', 'Dashboard')}}</li>
                         <li class="">{{ HTML::link('/user', 'User')}}</li>
-                        <li class="">{{ HTML::link('/customer', 'Customer')}}</li>
+                        <li class="">{{ HTML::link('/customers', 'Customer')}}</li>
                         <li class="">{{ HTML::link('/inventory', 'Inventory')}}</li>
                         <li class="">{{ HTML::link('/invoice', 'Invoice')}}</li>
                     </ul>
