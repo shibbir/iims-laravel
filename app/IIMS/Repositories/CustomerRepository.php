@@ -12,11 +12,13 @@ class CustomerRepository implements ICustomerRepository {
 
     public function find($id)
     {
-        return Customer::find($id);
+        return Customer::findOrFail($id);
     }
 
     public function create($input)
-    {}
+    {
+        Customer::create($input);
+    }
 
     public function update($id, $input)
     {

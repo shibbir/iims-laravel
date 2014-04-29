@@ -16,7 +16,7 @@ class SessionController extends \BaseController {
 	{
         if(Auth::check())
         {
-            return Redirect::dashboard();
+            return Redirect::route('dashboard');
         }
         return View::make('session.create');
 	}
@@ -27,15 +27,8 @@ class SessionController extends \BaseController {
         {
             $this->loginForm->validate(Input::all());
 
-            $input = Input::all();
-
-            $attempt = Auth::attempt([
-                'username' => $input['username'],
-                'password' => $input['password']
-            ]);
-
-            if($attempt) {
-                return Redirect::intended('/dashboard');
+            if(Auth::attempt(Input::only('username', 'password'))) {
+                return Redirect::intended('dashboard');
             }
 
             $data = [
@@ -53,6 +46,10 @@ class SessionController extends \BaseController {
 	public function destroy()
 	{
         Auth::logout();
-        return Redirect::login();
+        $data = [
+            'flash_type' => 'success',
+            'flash_message' => 'You have been logged out.'
+        ];
+        return Redirect::route('login')->with($data);
 	}
 }

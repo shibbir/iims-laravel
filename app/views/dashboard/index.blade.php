@@ -7,9 +7,9 @@
                 <div class="widget-header"><h4>Quick Dashboard</h4></div>
                 <div class="widget-body">
                     <ul class="cpanel">
-                        <li><a class="button1" href="user/profile">My Profile</a></li>
-                        <li><a class="button2" href="user>">Staff</a></li>
-                        <li><a class="button3" href="customer">Customer</a></li>
+                        <li><a class="button1" href="users/profile">My Profile</a></li>
+                        <li><a class="button2" href="users">Staff</a></li>
+                        <li><a class="button3" href="customers">Customer</a></li>
                         <li><a class="button4" href="inventory>">Inventory</a></li>
                         <li><a class="button5" href="invoice">Invoice</a></li>
                     </ul>
