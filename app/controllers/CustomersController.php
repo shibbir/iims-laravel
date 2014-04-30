@@ -4,7 +4,7 @@ use IIMS\Forms\Customer;
 use IIMS\Interfaces\ICustomerRepository;
 use IIMS\Forms\FormValidationException;
 
-class CustomerController extends \BaseController {
+class CustomersController extends \BaseController {
 
     protected $customerForm;
     protected $customerRepository;
@@ -40,7 +40,7 @@ class CustomerController extends \BaseController {
                 'flash_message' => 'Customer added successfully.'
             ];
 
-            return Redirect::route('customers.index')->with($data);
+            return Redirect::route('customer.index')->with($data);
         }
         catch(FormValidationException $e)
         {

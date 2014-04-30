@@ -15,6 +15,7 @@
     <meta property="og:image" content="" />
     <meta property="og:description" content="IIMS is a simple easy-to-use, online inventory and invoice management system that also help you manage your customers, employees, products." />
 
+    {{ HTML::style('bower_components/dynatable/jquery.dynatable.css') }}
     {{ HTML::style('bower_components/bootstrap/docs/assets/css/bootstrap.css') }}
     {{ HTML::style('bower_components/bootstrap/docs/assets/css/bootstrap-responsive.css') }}
     {{ HTML::style('bower_components/fontawesome/css/font-awesome.css') }}
@@ -61,9 +62,9 @@
                 <div class="nav-collapse">
                     <ul class="nav">
                         <li class="active">{{ HTML::link('/dashboard', 'Dashboard')}}</li>
-                        <li class="">{{ HTML::link('/user', 'User')}}</li>
+                        <li class="">{{ HTML::link('/users', 'User')}}</li>
                         <li class="">{{ HTML::link('/customers', 'Customer')}}</li>
-                        <li class="">{{ HTML::link('/inventory', 'Inventory')}}</li>
+                        <li class="">{{ HTML::link('/products', 'Inventory')}}</li>
                         <li class="">{{ HTML::link('/invoice', 'Invoice')}}</li>
                     </ul>
                 </div><!--/.nav-collapse -->
@@ -85,6 +86,7 @@
         </p>
     </div>
     {{ HTML::script('bower_components/jquery/jquery.min.js') }}
+    {{ HTML::script('bower_components/dynatable/jquery.dynatable.js') }}
     {{ HTML::script('bower_components/bootstrap/docs/assets/js/bootstrap.js') }}
     {{ HTML::script('js/libs/kendo.web.min.js') }}
     {{ HTML::script('js/libs/spin.min.js') }}

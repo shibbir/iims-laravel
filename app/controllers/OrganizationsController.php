@@ -2,7 +2,7 @@
 
 use IIMS\Interfaces\IOrganizationRepository;
 
-class OrganizationController extends \BaseController {
+class OrganizationsController extends \BaseController {
 
     protected $organizationRepository;
 

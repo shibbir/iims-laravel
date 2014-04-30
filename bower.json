@@ -24,6 +24,7 @@
         "modernizr": "2.*",
         "highcharts.com": "3.*",
         "html5shiv": null,
-        "toastr": null
+        "toastr": null,
+        "dynatable": "~0.3.1"
     }
 }

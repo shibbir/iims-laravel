@@ -3,10 +3,14 @@
 Route::get('/', 'DashboardController@index')->before('auth');
 Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index'])->before('auth');
 
-Route::get('login', ['as' => 'login', 'uses' => 'SessionController@create']);
-Route::get('logout', ['as' => 'logout', 'uses' => 'SessionController@destroy']);
-Route::resource('sessions', 'SessionController', ['only' => ['create', 'store', 'destroy']]);
+Route::get('login', ['as' => 'login', 'uses' => 'SessionsController@create']);
+Route::get('logout', ['as' => 'logout', 'uses' => 'SessionsController@destroy']);
+Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy']]);
 
-Route::resource('organizations', 'OrganizationController', ['only' => ['show', 'update']]);
+Route::resource('users', 'UsersController');
 
-Route::resource('customers', 'CustomerController');
+Route::resource('organizations', 'OrganizationsController', ['only' => ['show', 'update']]);
+
+Route::resource('customers', 'CustomersController');
+
+Route::resource('products', 'ProductsController');

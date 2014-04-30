@@ -10,7 +10,7 @@
                         <li><a class="button1" href="users/profile">My Profile</a></li>
                         <li><a class="button2" href="users">Staff</a></li>
                         <li><a class="button3" href="customers">Customer</a></li>
-                        <li><a class="button4" href="inventory>">Inventory</a></li>
+                        <li><a class="button4" href="products">Inventory</a></li>
                         <li><a class="button5" href="invoice">Invoice</a></li>
                     </ul>
                 </div>
