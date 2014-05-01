@@ -17,12 +17,11 @@
     ],
     "dependencies": {
         "jquery": "2.*",
-        "bootstrap": "2.*",
-        "fontawesome": "3.*",
+        "bootstrap": "3.*",
+        "fontawesome": "4.*",
         "angular": null,
         "underscore": null,
         "modernizr": "2.*",
-        "highcharts.com": "3.*",
         "html5shiv": null,
         "toastr": null,
         "dynatable": "~0.3.1"

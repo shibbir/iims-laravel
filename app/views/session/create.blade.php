@@ -8,15 +8,13 @@
         @include('shared._flashMessage')
 
         {{ Form::open(array('route' => 'sessions.store')) }}
-            <div class="input-prepend">
-                <span class="add-on"><i class="icon-user"></i></span>
-                {{ Form::text('username', '', ['placeholder' => 'Username', 'style' => 'width: 343px;']) }}
+            <div class="form-group">
+                {{ Form::text('username', '', ['placeholder' => 'Username', 'class' => 'form-control']) }}
                 {{ $errors->first('username', '<span class="error">:message</span>')}}
             </div>
 
-            <div class="input-prepend">
-                <span class="add-on"><i class="icon-key"></i></span>
-                {{ Form::password('password', ['placeholder' => 'Password', 'style' => 'width: 343px;']) }}
+            <div class="form-group">
+                {{ Form::password('password', ['placeholder' => 'Password', 'class' => 'form-control']) }}
                 {{ $errors->first('password', '<span class="error">:message</span>')}}
             </div>
 

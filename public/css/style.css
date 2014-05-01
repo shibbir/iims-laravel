@@ -1,8 +1,6 @@
 /********************************** START => OVERRIDE DEFAULT BOOTSTRAP CSS ************************************************/
 body {
-	padding-top: 40px;
-	background: url("../img/body-bg.png") repeat scroll 0 0 transparent;
-    background-color: #FFFFFF;
+    background: #FFFFFF url("../img/body-bg.png") repeat scroll 0 0;
     margin: 0;
     font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 13px;
@@ -12,40 +10,16 @@ a								{ cursor: pointer; }
 a:hover							{ text-decoration: none; }
 h1 								{ margin-bottom: 0.25em; }
 h2 								{ color: #4A515B; margin-bottom: 0.5em; }
-h3 								{ color: #FF9900; font-weight: 600; margin-bottom: 0.75em; }
-h4, h5, h6 						{ color: #666666; }
 hr 								{ border-top-color: #DDDDDD; }
 
-.form-horizontal .controls 		{ margin-left: 115px; }
-.form-horizontal .control-label { width: 110px; text-align: left; }
-.form-horizontal.user-password-form .control-label { width: 180px; }
-
-.input-append .add-on:last-child,
-.input-append .btn:last-child,
-.input-append .btn-group:last-child > .dropdown-toggle,
-.input-prepend .add-on:first-child, .input-prepend .btn:first-child,
-.dropdown-menu, .alert,
-.btn, .btn-group > .btn:first-child, .btn-group > .btn:last-child, .btn-group > .dropdown-toggle,
-.well, .nav-tabs > li > a,
-.modal, .modal-footer,
-select, textarea, input[type="text"], input[type="password"], input[type="datetime"],
-input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"],
-input[type="week"], input[type="number"], input[type="email"], input[type="url"],
-input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-	border-radius: 0;
+.btn, .form-control {
+    border-radius: 0 !important;
 }
+
 textarea {
 	box-shadow: 0 1px 5px #999999 inset;
     padding: 10px;
 }
-
-.modal-body { max-height: none; }
-.modal-footer { border: medium none; box-shadow: none; }
-#ModalUserEdit.modal { width: 800px; margin-left: -400px; }
-#ModalCategoryAdd.modal, #ModalCategoryEdit.modal { width: 800px; margin-left: -400px; }
-#ModalOrganizationAdd.modal, #ModalOrganizationEdit.modal { width: 1080px; margin-left: -540px; }
-#ModalCustomerAdd.modal, #ModalCustomerEdit.modal { width: 800px; margin-left: -400px; }
-#ModalInventoryAdd.modal, #ModalInventoryEdit.modal { width: 1200px; margin-left: -600px; }
 
 /********************************** END => OVERRIDE DEFAULT BOOTSTRAP CSS ************************************************/
 
@@ -80,16 +54,16 @@ textarea {
 	margin: 160px auto 0;
 	width: 425px;
 }
-.container {
-	padding-top: 10px;
-    min-height: 362px;
+.content {
+    background-color: #FFFFFF;
+    border: 1px solid #D5D5D5;
     font-family: 'Lucida Sans Unicode','Lucida Grande',arial,helvetica,sans-serif;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    min-height: 370px;
+    padding: 20px 15px 15px;
 }
-.form-container {
-	background: none repeat scroll 0 0 #FFFFFF;
-	border: 1px solid #D5D5D5;
-	padding: 20px 15px 15px;
-}
+
 ul.flexipage {
 	margin: 0;
 }
@@ -131,10 +105,9 @@ button::-moz-focus-inner {
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
     background: linear-gradient(to bottom, #FFFFFF 0%, #F5F5F5 100%) repeat scroll 0 0 transparent;
-    border-color: #C9C9C9;
     border-image: none;
-    border-style: solid;
-    border-width: 1px 1px 0;
+    border: 1px solid #C9C9C9;
+    border-bottom-width: 0;
     box-shadow: 0 1px 0 #FFFFFF inset;
     height: 38px;
     line-height: 38px;
@@ -197,7 +170,6 @@ ul.cpanel li a {
 	display: block;
 	padding: 60px 8px 8px;
 	width: 100px;
-	height: 22px;
 	font-size: 12px;
 	color: #222;
 	background-repeat: no-repeat;
@@ -221,11 +193,10 @@ ul.cpanel li:hover {
 	background: none repeat scroll 0 0 #333333;
     color: #FFFFFF;
     height: 110px;
-    margin: 8% 20px 20px -110px;
     width: 150px;
     left: 50%;
-    margin-left: -110px;
-	position: absolute;
+    margin: 8% 20px 20px -110px;
+    position: absolute;
 }
 
 

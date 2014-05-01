@@ -126,7 +126,7 @@
         }();
         $scope.getInventoryChartData = function() {
             var data = [
-                ["Others", 19],
+                ["Miscellaneous", 19],
                 ["Processor", 27],
                 ["Motherboard", 7],
                 ["Monitor", 2],

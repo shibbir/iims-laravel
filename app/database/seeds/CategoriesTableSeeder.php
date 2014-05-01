@@ -5,7 +5,7 @@ class CategoriesTableSeeder extends Seeder {
     public function run()
     {
         $category = [
-            'title' => 'others',
+            'title' => 'Miscellaneous',
             'description' => 'This is the default category'
         ];
 

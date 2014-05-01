@@ -26,18 +26,14 @@
     <![endif]-->
 </head>
 <body>
-    <!-- Navbar -->
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <a class="brand" href="/">
-                    Inventory &amp; Invoice Management System
-                    <span class="label label-success">beta</span>
-                </a>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Inventory &amp; Invoice Management System</a>
             </div>
         </div>
-    </div>
-    <!-- login-container -->
+    </nav>
+
     <div class="login-container container">
         @yield('content')
         <p class="pull-right">

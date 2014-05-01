@@ -3,7 +3,7 @@
 use IIMS\Forms\Login;
 use IIMS\Forms\FormValidationException;
 
-class SessionController extends \BaseController {
+class SessionsController extends \BaseController {
 
     protected $loginForm;
 

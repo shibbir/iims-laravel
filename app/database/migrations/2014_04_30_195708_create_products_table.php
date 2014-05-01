@@ -13,7 +13,6 @@ class CreateProductsTable extends Migration {
             $table->string('categoryId');
             $table->string('title')->unique();
             $table->string('description');
-            $table->string('address');
             $table->integer('quantity');
             $table->string('warranty');
             $table->decimal('unitPrice');

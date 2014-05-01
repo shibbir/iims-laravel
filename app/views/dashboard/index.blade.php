@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="row-fluid" ng-controller="dashboardCtrl">
-        <div class="span6">
+    <div class="row" ng-controller="dashboardCtrl">
+        <div class="col-xs-12 col-md-6">
             <div class="widget">
                 <div class="widget-header"><h4>Quick Dashboard</h4></div>
                 <div class="widget-body">
@@ -16,15 +16,15 @@
                 </div>
             </div>
         </div>
-        <div class="span6">
+        <div class="col-xs-12 col-md-6">
             <div class="widget">
                 <div class="widget-header">
-                    <div class="row-fluid">
-                        <div class="span6">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
                             <h4>Organization Information</h4>
                         </div>
                         <div ng-if="organization">
-                            <div class="span6 textRight">
+                            <div class="col-xs-6 col-md-6 textRight">
                                 <a class="btn btn-primary organization-edit-modal" data-target="#ModalOrganizationEdit" data-toggle="modal">Edit</a>
                             </div>
                         </div>
@@ -39,11 +39,11 @@
                         <small ng-bind="organization.subTitle"></small>
                         <address ng-bind="organization.address"></address>
                         <p>
-                            <span class="label label-important">Mobile</span>
+                            <span class="label label-primary">Mobile</span>
                             <span ng-bind="organization.mobile"></span>
                         </p>
                         <p>
-                            <span class="label label-important">Phone</span>
+                            <span class="label label-primary">Phone</span>
                             <span ng-bind="organization.phone"></span>
                         </p>
                         <p>

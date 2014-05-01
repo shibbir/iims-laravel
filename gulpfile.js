@@ -6,8 +6,7 @@ var gulp = require("gulp"),
 
 gulp.task("css", function() {
     return gulp.src([
-            "public/bower_components/bootstrap/docs/assets/css/bootstrap.css",
-            "public/bower_components/bootstrap/docs/assets/css/bootstrap-responsive.css",
+            "public/bower_components/bootstrap/dist/css/bootstrap.css",
             "public/bower_components/fontawesome/css/font-awesome.css",
             "public/bower_components/toastr/toastr.css",
             "public/css/style.css"
@@ -21,7 +20,7 @@ gulp.task("css", function() {
 
 gulp.task("scripts", function() {
     return gulp.src([
-            "public/bower_components/bootstrap/docs/assets/js/bootstrap.js",
+            "public/bower_components/bootstrap/dist/js/bootstrap.js",
             "public/js/libs/kendo.web.min.js",
             "public/js/libs/spin.min.js",
             "public/bower_components/angular/angular.js",
@@ -43,7 +42,6 @@ gulp.task("scripts", function() {
 gulp.task("cssForPrintPage", function() {
     return gulp.src([
             "content/css/bootstrap.css",
-            "content/css/bootstrap-responsive.css",
             "content/css/style-print.css"
         ])
         .pipe(concat("printer.css"))
@@ -55,7 +53,7 @@ gulp.task("cssForPrintPage", function() {
 
 gulp.task("cssForWelcomePage", function() {
     return gulp.src([
-            "public/bower_components/bootstrap/docs/assets/css/bootstrap.css",
+            "public/bower_components/bootstrap/dist/css/bootstrap.css",
             "public/bower_components/fontawesome/css/font-awesome.css",
             "public/css/style.css"
         ])
@@ -68,8 +66,8 @@ gulp.task("cssForWelcomePage", function() {
 
 gulp.task("scriptsForWelcomePage", function() {
     return gulp.src([
-            "public/bower_components/jquery/jquery.js",
-            "public/bower_components/bootstrap/docs/assets/js/bootstrap.js",
+            "public/bower_components/jquery/dist/jquery.js",
+            "public/bower_components/bootstrap/dist/js/bootstrap.js",
             "public/js/custom-modules.js",
             "public/js/login.js",
         ])

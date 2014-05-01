@@ -17,6 +17,9 @@ class ProductRepository implements IProductRepository {
 
     public function create($input)
     {
+        if($input['quantity'] > 0) {
+            $input['isAvailable'] = 1;
+        }
         Product::create($input);
     }
 

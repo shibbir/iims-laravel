@@ -40,7 +40,7 @@ class CustomersController extends \BaseController {
                 'flash_message' => 'Customer added successfully.'
             ];
 
-            return Redirect::route('customer.index')->with($data);
+            return Redirect::route('customers.index')->with($data);
         }
         catch(FormValidationException $e)
         {
