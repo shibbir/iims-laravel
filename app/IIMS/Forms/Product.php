@@ -2,7 +2,7 @@
 
 class Product extends FormValidator {
     protected $rules = [
-        'categoryId' => 'required',
-        'title' => 'required'
+        'category_id' => 'required',
+        'title'       => 'required|unique:products'
     ];
 }

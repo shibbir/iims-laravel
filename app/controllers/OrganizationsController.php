@@ -6,21 +6,21 @@ class OrganizationsController extends \BaseController {
 
     protected $organizationRepository;
 
-    public function __construct(IOrganizationRepository $organizationRepository)
+    function __construct(IOrganizationRepository $organizationRepository)
     {
         $this->organizationRepository = $organizationRepository;
     }
 
 	public function show($id)
 	{
-        return $this->organizationRepository->getOrganization($id);
+        return $this->organizationRepository->find($id);
 	}
 
 	public function update($id)
 	{
         try
         {
-            $this->organizationRepository->editOrganization($id, Input::all());
+            $this->organizationRepository->update($id, Input::all());
             $response['responseType'] = 'success';
         }
         catch(ValidationException $e)

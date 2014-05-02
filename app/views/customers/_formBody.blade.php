@@ -1,24 +1,24 @@
 <div class="form-group">
-    {{ Form::label('firstName', 'First Name') }}
-    {{ Form::text('firstName', '', ['class' => 'form-control']) }}
-    {{ $errors->first('firstName', '<span class="error">:message</span>')}}
+    {{ Form::label('first_name', 'First Name') }}
+    {{ Form::text('first_name', null, ['class' => 'form-control']) }}
+    {{ $errors->first('first_name', '<span class="error">:message</span>')}}
 </div>
 
 <div class="form-group">
-    {{ Form::label('lastName', 'Last Name') }}
-    {{ Form::text('lastName', '', ['class' => 'form-control']) }}
-    {{ $errors->first('lastName', '<span class="error">:message</span>')}}
+    {{ Form::label('last_name', 'Last Name') }}
+    {{ Form::text('last_name', null, ['class' => 'form-control']) }}
+    {{ $errors->first('last_name', '<span class="error">:message</span>')}}
 </div>
 
 <div class="form-group">
     {{ Form::label('contact', 'Contact') }}
-    {{ Form::text('contact', '', ['class' => 'form-control']) }}
+    {{ Form::text('contact', null, ['class' => 'form-control']) }}
     {{ $errors->first('contact', '<span class="error">:message</span>')}}
 </div>
 
 <div class="form-group">
     {{ Form::label('address', 'Address') }}
-    {{ Form::textarea('address', '', ['class' => 'form-control']) }}
+    {{ Form::textarea('address', null, ['class' => 'form-control']) }}
     {{ $errors->first('address', '<span class="error">:message</span>')}}
 </div>
 

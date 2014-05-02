@@ -1,5 +1,7 @@
 <?php
 
+use IIMS\Models\User;
+
 class UsersTableSeeder extends Seeder {
 
     public function run()
@@ -13,6 +15,6 @@ class UsersTableSeeder extends Seeder {
             'email'    => 'shibbir.cse@gmail.com'
         ];
 
-        DB::table('users')->insert($user);
+        User::create($user);
     }
 }

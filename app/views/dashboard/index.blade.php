@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    Welcome to the dashboard
+@stop
+
 @section('content')
     <div class="row" ng-controller="dashboardCtrl">
         <div class="col-xs-12 col-md-6">
@@ -36,7 +40,7 @@
 
                     <div ng-if="organization">
                         <h4 ng-bind="organization.title"></h4>
-                        <small ng-bind="organization.subTitle"></small>
+                        <small ng-bind="organization.sub_title"></small>
                         <address ng-bind="organization.address"></address>
                         <p>
                             <span class="label label-primary">Mobile</span>

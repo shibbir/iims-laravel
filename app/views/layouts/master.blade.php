@@ -6,7 +6,7 @@
     <meta name="description" content="IIMS is a simple easy-to-use, online inventory and invoice management system that also help you manage your customers, employees, products." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>IIMS -- <?=$title?></title>
+    <title>IIMS -- @yield('title')</title>
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="IIMS" />
@@ -15,15 +15,10 @@
     <meta property="og:image" content="" />
     <meta property="og:description" content="IIMS is a simple easy-to-use, online inventory and invoice management system that also help you manage your customers, employees, products." />
 
-    {{ HTML::style('bower_components/dynatable/jquery.dynatable.css') }}
     {{ HTML::style('bower_components/bootstrap/dist/css/bootstrap.css') }}
     {{ HTML::style('bower_components/fontawesome/css/font-awesome.css') }}
     {{ HTML::style('bower_components/toastr/toastr.css') }}
     {{ HTML::style('css/style.css') }}
-
-    <!--[if IE 7]>
-    {{ HTML::style('bower_components/fontawesome/css/font-awesome-ie7.min.css') }}
-    <![endif]-->
 
     <!--[if lt IE 9]>
     {{ HTML::script('bower_components/html5shiv/dist/html5shiv.js') }}
@@ -43,9 +38,7 @@
         </p>
     </div>
     {{ HTML::script('bower_components/jquery/dist/jquery.js') }}
-    {{ HTML::script('bower_components/dynatable/jquery.dynatable.js') }}
     {{ HTML::script('bower_components/bootstrap/dist/js/bootstrap.js') }}
-    {{ HTML::script('js/libs/kendo.web.min.js') }}
     {{ HTML::script('js/libs/spin.min.js') }}
     {{ HTML::script('bower_components/angular/angular.js') }}
     {{ HTML::script('bower_components/toastr/toastr.js') }}
@@ -55,7 +48,5 @@
     {{ HTML::script('js/application/controllers/dashboard-controller.js') }}
     {{ HTML::script('js/application/services/api-service.js') }}
     {{ HTML::script('js/application/services/notifier-service.js') }}
-    {{ HTML::script('js/app.js') }}
-    {{ HTML::script('js/custom-modules.js') }}
 </body>
 </html>

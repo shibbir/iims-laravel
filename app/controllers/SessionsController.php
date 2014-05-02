@@ -1,7 +1,6 @@
 <?php
 
 use IIMS\Forms\Login;
-use IIMS\Forms\FormValidationException;
 
 class SessionsController extends \BaseController {
 
@@ -18,29 +17,22 @@ class SessionsController extends \BaseController {
         {
             return Redirect::route('dashboard');
         }
-        return View::make('session.create');
+        return View::make('sessions.create');
 	}
 
     public function store()
     {
-        try
-        {
-            $this->loginForm->validate(Input::all());
+        $this->loginForm->validate(Input::all());
 
-            if(Auth::attempt(Input::only('username', 'password'))) {
-                return Redirect::intended('dashboard');
-            }
+        if(Auth::attempt(Input::only('username', 'password'))) {
+            return Redirect::intended('dashboard');
+        }
 
-            $data = [
-                'flash_type' => 'error',
-                'flash_message' => 'Oops! Invalid username or password.'
-            ];
-            return Redirect::back()->withInput()->with($data);
-        }
-        catch(FormValidationException $e)
-        {
-            return Redirect::back()->withInput()->withErrors($e->getErrors());
-        }
+        $data = [
+            'flash_type' => 'danger',
+            'flash_message' => 'Oops! Invalid username or password.'
+        ];
+        return Redirect::back()->withInput()->with($data);
     }
 
 	public function destroy()

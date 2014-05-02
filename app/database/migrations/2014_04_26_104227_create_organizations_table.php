@@ -11,7 +11,7 @@ class CreateOrganizationsTable extends Migration {
 		{
 			$table->increments('id');
             $table->string('title');
-            $table->string('subTitle');
+            $table->string('sub_title');
             $table->string('description');
             $table->string('address');
             $table->string('mobile');

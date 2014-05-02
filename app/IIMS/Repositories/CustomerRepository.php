@@ -7,7 +7,7 @@ class CustomerRepository implements ICustomerRepository {
 
     public function findAll()
     {
-        return Customer::all();
+        return Customer::paginate(10);
     }
 
     public function find($id)

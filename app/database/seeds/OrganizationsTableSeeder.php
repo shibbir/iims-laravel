@@ -1,12 +1,14 @@
 <?php
 
+use IIMS\Models\Organization;
+
 class OrganizationsTableSeeder extends Seeder {
 
     public function run()
     {
         $organization = [
             'title'       => 'Computer Zone',
-            'subTitle'    => 'Computer sales & services',
+            'sub_title'   => 'Computer sales & services',
             'address'     => 'Dhaka, Bangladesh',
             'description' => 'Accessories, Computer Software, Game, Cybercafe, Design & Training',
             'mobile'      => '01710598961',
@@ -15,6 +17,6 @@ class OrganizationsTableSeeder extends Seeder {
             'website'     => 'http://iims.shibbir.net/'
         ];
 
-        DB::table('organizations')->insert($organization);
+        Organization::create($organization);
     }
 }

@@ -7,7 +7,7 @@ class ProductRepository implements IProductRepository {
 
     public function findAll()
     {
-        return Product::all();
+        return Product::paginate(15);
     }
 
     public function find($id)
@@ -18,7 +18,7 @@ class ProductRepository implements IProductRepository {
     public function create($input)
     {
         if($input['quantity'] > 0) {
-            $input['isAvailable'] = 1;
+            $input['is_available'] = 1;
         }
         Product::create($input);
     }

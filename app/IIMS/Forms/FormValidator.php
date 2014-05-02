@@ -1,5 +1,6 @@
 <?php namespace IIMS\Forms;
 
+use IIMS\Exceptions\FormValidationException;
 use Illuminate\Validation\Factory as Validator;
 
 abstract class FormValidator {

@@ -4,5 +4,5 @@ class Customer extends \Eloquent {
 
     protected $table = 'customers';
 
-    protected $fillable = ['firstName', 'lastName', 'contact', 'address'];
+    protected $fillable = ['first_name', 'last_name', 'contact', 'address'];
 }

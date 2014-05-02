@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    Customer Details
+@stop
+
 @section('content')
 
     <ul class="nav nav-tabs">
@@ -11,7 +15,7 @@
         <div id="customer" class="tab-pane fade active in">
             @if($customer)
                 <div class="block">
-                    <h3>Name: {{ $customer->firstName }} {{ $customer->lastName }}</h3>
+                    <h3>Name: {{ $customer->first_name }} {{ $customer->last_name }}</h3>
                     <h4>Registration Date: {{ $customer->created_at }}</h4>
                     <h4>Contact Number: {{ $customer->contact }}</h4>
 

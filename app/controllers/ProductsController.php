@@ -2,7 +2,6 @@
 
 use IIMS\Forms\Product;
 use IIMS\Interfaces\IProductRepository;
-use IIMS\Forms\FormValidationException;
 
 class ProductsController extends \BaseController {
 
@@ -18,66 +17,51 @@ class ProductsController extends \BaseController {
 
 	public function index()
 	{
-        $data = ['title' => 'Product Page', 'products' => $this->productRepository->findAll()];
-        return View::make('product.index')->with($data);
+        $products = $this->productRepository->findAll();
+        return View::make('products.index')->withProducts($products);
 	}
 
 	public function create()
 	{
-        $data = ['title' => 'Product Create Page'];
-        return View::make('product.create')->with($data);
+        return View::make('products.create');
 	}
 
 	public function store()
 	{
-        try
-        {
-            $this->productForm->validate(Input::all());
-            $this->productRepository->create(Input::all());
+        $this->productForm->validate(Input::all());
+        $this->productRepository->create(Input::all());
 
-            $data = [
-                'flash_type' => 'success',
-                'flash_message' => 'Product added successfully.'
-            ];
+        $data = [
+            'flash_type' => 'success',
+            'flash_message' => 'Product added successfully.'
+        ];
 
-            return Redirect::route('products.index')->with($data);
-        }
-        catch(FormValidationException $e)
-        {
-            return Redirect::back()->withInput()->withErrors($e->getErrors());
-        }
+        return Redirect::route('products.index')->with($data);
 	}
 
 	public function show($id)
 	{
-        $data = ['title' => 'Product Details Page', 'product' => $this->productRepository->find($id)];
-        return View::make('product.show')->with($data);
+        $product = $this->productRepository->find($id);
+        return View::make('products.show')->withProduct($product);
 	}
 
 	public function edit($id)
 	{
-        $data = ['title' => 'Product Details Page', 'product' => $this->productRepository->find($id)];
-        return View::make('product.edit')->with($data);
+        $product = $this->productRepository->find($id);
+        return View::make('products.edit')->withProduct($product);
 	}
 
 	public function update($id)
 	{
-        try
-        {
-            $this->productForm->validate(Input::all());
-            $this->productRepository->update($id, Input::all());
+        $this->productForm->validate(Input::all());
+        $this->productRepository->update($id, Input::all());
 
-            $data = [
-                'flash_type' => 'success',
-                'flash_message' => 'Product updated successfully.'
-            ];
+        $data = [
+            'flash_type' => 'success',
+            'flash_message' => 'Product updated successfully.'
+        ];
 
-            return Redirect::route('products.edit', $id)->with($data);
-        }
-        catch(FormValidationException $e)
-        {
-            return Redirect::back()->withInput()->withErrors($e->getErrors());
-        }
+        return Redirect::route('products.edit', $id)->with($data);
 	}
 
 	public function destroy($id)

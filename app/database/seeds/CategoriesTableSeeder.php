@@ -1,5 +1,8 @@
 <?php
 
+use IIMS\Models\Category;
+use Faker\Factory as Faker;
+
 class CategoriesTableSeeder extends Seeder {
 
     public function run()
@@ -9,6 +12,16 @@ class CategoriesTableSeeder extends Seeder {
             'description' => 'This is the default category'
         ];
 
-        DB::table('categories')->insert($category);
+        Category::create($category);
+
+        $faker = Faker::create();
+
+        foreach(range(1, 10) as $index)
+        {
+            Category::create([
+                'title' => $faker->unique()->word,
+                'description' => $faker->sentence()
+            ]);
+        }
     }
 }

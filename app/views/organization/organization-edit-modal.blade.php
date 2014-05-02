@@ -7,8 +7,6 @@
                     <h3>Update Organization Information</h3>
                 </div>
 
-                <div id="notification-organization-edit"></div>
-
                 <input type="hidden" name="id" ng-value="[[ organization.id ]]" />
 
                 <div class="modal-body">
@@ -21,7 +19,7 @@
 
                             <div class="form-group">
                                 <label for="subTitle">SubTitle</label>
-                                <input type="text" name="subTitle" class="form-control" ng-model="organization.subTitle" />
+                                <input type="text" name="sub_title" class="form-control" ng-model="organization.sub_title" />
                             </div>
 
                             <div class="form-group">

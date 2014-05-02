@@ -51,6 +51,11 @@ App::error(function(Exception $exception, $code)
 	Log::error($exception);
 });
 
+App::error(function(IIMS\Exceptions\FormValidationException $exception)
+{
+    return Redirect::back()->withInput()->withErrors($exception->getErrors());
+});
+
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler

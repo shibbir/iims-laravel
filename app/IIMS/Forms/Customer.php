@@ -2,8 +2,8 @@
 
 class Customer extends FormValidator {
     protected $rules = [
-        'firstName' => 'required',
-        'lastName' => 'required',
-        'address' => 'required'
+        'first_name' => 'required',
+        'last_name'  => 'required',
+        'address'    => 'required'
     ];
 }

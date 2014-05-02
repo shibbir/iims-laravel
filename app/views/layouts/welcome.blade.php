@@ -17,10 +17,6 @@
 
     {{ HTML::style('css/welcome.min.css') }}
 
-    <!--[if IE 7]>
-    {{ HTML::style('bower_components/fontawesome/css/font-awesome-ie7.min.css') }}
-    <![endif]-->
-
     <!--[if lt IE 9]>
     {{ HTML::script('bower_components/html5shiv/dist/html5shiv.js') }}
     <![endif]-->

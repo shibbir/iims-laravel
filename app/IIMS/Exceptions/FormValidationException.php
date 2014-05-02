@@ -1,4 +1,4 @@
-<?php namespace IIMS\Forms;
+<?php namespace IIMS\Exceptions;
 
 use Illuminate\Support\MessageBag;
 

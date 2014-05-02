@@ -28,9 +28,7 @@ gulp.task("scripts", function() {
             "public/js/libs/jquery.printPage.js",
             "public/js/application/app.js",
             "public/js/application/controllers/dashboard-controller.js",
-            "public/js/application/services/api-service.js",
-            "public/js/app.js",
-            "public/js/custom-modules.js"
+            "public/js/application/services/api-service.js"
         ])
         .pipe(concat("all.js"))
         .pipe(gulp.dest("public/js/"))
@@ -67,9 +65,7 @@ gulp.task("cssForWelcomePage", function() {
 gulp.task("scriptsForWelcomePage", function() {
     return gulp.src([
             "public/bower_components/jquery/dist/jquery.js",
-            "public/bower_components/bootstrap/dist/js/bootstrap.js",
-            "public/js/custom-modules.js",
-            "public/js/login.js",
+            "public/bower_components/bootstrap/dist/js/bootstrap.js"
         ])
         .pipe(concat("welcome.js"))
         .pipe(gulp.dest("public/js/"))
