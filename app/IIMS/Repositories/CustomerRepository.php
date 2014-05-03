@@ -5,14 +5,16 @@ use IIMS\Interfaces\ICustomerRepository;
 
 class CustomerRepository implements ICustomerRepository {
 
-    public function findAll()
+    public function findAll($fields = [])
     {
-        return Customer::paginate(10);
+        if(empty($fields)) return Customer::paginate(10);
+        return Customer::paginate(10, $fields);
     }
 
-    public function find($id)
+    public function find($id, $fields = [])
     {
-        return Customer::findOrFail($id);
+        if(empty($fields)) return Customer::findOrFail($id);
+        return Customer::findOrFail($id, $fields);
     }
 
     public function create($input)
@@ -29,5 +31,8 @@ class CustomerRepository implements ICustomerRepository {
     }
 
     public function delete($id)
-    {}
+    {
+        $customer = Customer::find($id);
+        $customer->delete();
+    }
 }

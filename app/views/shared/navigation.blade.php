@@ -16,24 +16,32 @@
             <ul class="nav navbar-nav">
                 <li class="active">{{ HTML::link('/dashboard', 'Dashboard')}}</li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>{{ HTML::link('/users', 'List')}}</li>
-                        <li>{{ HTML::link('/users/create', 'Create')}}</li>
+                        <li>{{ HTML::link('/users', 'All Users')}}</li>
+                        <li>{{ HTML::link('/users/create', 'Create New User')}}</li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Customers <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Customer <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>{{ HTML::link('/customers', 'List')}}</li>
-                        <li>{{ HTML::link('/customers/create', 'Create')}}</li>
+                        <li>{{ HTML::link('/customers', 'All Customers')}}</li>
+                        <li>{{ HTML::link('/customers/create', 'Create New Customer')}}</li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventory <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>{{ HTML::link('/products', 'List')}}</li>
-                        <li>{{ HTML::link('/products/create', 'Create')}}</li>
+                        <li>{{ HTML::link('/products', 'Product List')}}</li>
+                        <li>{{ HTML::link('/products/create', 'Create New Product')}}</li>
+                        <li>{{ HTML::link('/categories', 'Manage Categories')}}</li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Supplier <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>{{ HTML::link('/suppliers', 'All Suppliers')}}</li>
+                        <li>{{ HTML::link('/suppliers/create', 'Create New Supplier')}}</li>
                     </ul>
                 </li>
             </ul>
@@ -41,7 +49,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hello {{ Auth::user()->username }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>{{ HTML::link('/users/' . Auth::user()->id , 'Profile')}}</li>
+                        <li>{{ HTML::link('/profile', 'Profile')}}</li>
                         <li>{{ HTML::link('/logout', 'Logout')}}</li>
                     </ul>
                 </li>

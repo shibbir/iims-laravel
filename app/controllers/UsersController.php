@@ -31,12 +31,7 @@ class UsersController extends \BaseController {
         $this->userForm->validate(Input::all());
         $this->userRepository->create(Input::all());
 
-        $data = [
-            'flash_type' => 'success',
-            'flash_message' => 'User added successfully.'
-        ];
-
-        return Redirect::route('users.index')->with($data);
+        return Redirect::route('users.index')->with($this->getSuccessNotification('User added successfully.'));
 	}
 
 	public function show($id)
@@ -56,12 +51,13 @@ class UsersController extends \BaseController {
         $this->userForm->validate(Input::all());
         $this->userRepository->update($id, Input::all());
 
-        $data = [
-            'flash_type' => 'success',
-            'flash_message' => 'User updated successfully.'
-        ];
+        return Redirect::route('users.edit', $id)->with($this->getSuccessNotification('User updated successfully.'));
+    }
 
-        return Redirect::route('users.edit', $id)->with($data);
+    public function profile()
+    {
+        $user = $this->userRepository->find(Auth::user()->id);
+        return View::make('users.show')->withUser($user);
     }
 
 	public function destroy($id)

@@ -17,7 +17,7 @@ class CustomersController extends \BaseController {
 
 	public function index()
 	{
-        $customers = $this->customerRepository->findAll();
+        $customers = $this->customerRepository->findAll(['id', 'first_name', 'last_name', 'contact', 'address']);
         return View::make('customers.index')->withCustomers($customers);
 	}
 
@@ -31,12 +31,7 @@ class CustomersController extends \BaseController {
         $this->customerForm->validate(Input::all());
         $this->customerRepository->create(Input::all());
 
-        $data = [
-            'flash_type' => 'success',
-            'flash_message' => 'Customer added successfully.'
-        ];
-
-        return Redirect::route('customers.index')->with($data);
+        return Redirect::route('customers.index')->with($this->getSuccessNotification('Customer added successfully.'));
 	}
 
 	public function show($id)
@@ -56,12 +51,7 @@ class CustomersController extends \BaseController {
         $this->customerForm->validate(Input::all());
         $this->customerRepository->update($id, Input::all());
 
-        $data = [
-            'flash_type' => 'success',
-            'flash_message' => 'Customer updated successfully.'
-        ];
-
-        return Redirect::route('customers.edit', $id)->with($data);
+        return Redirect::route('customers.edit', $id)->with($this->getSuccessNotification('Customer updated successfully.'));
 	}
 
 	public function destroy($id)

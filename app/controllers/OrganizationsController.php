@@ -13,7 +13,7 @@ class OrganizationsController extends \BaseController {
 
 	public function show($id)
 	{
-        return $this->organizationRepository->find($id);
+        return $this->organizationRepository->find($id, ['id', 'title', 'sub_title', 'mobile', 'phone', 'email', 'website', 'address', 'description']);
 	}
 
 	public function update($id)
@@ -25,10 +25,10 @@ class OrganizationsController extends \BaseController {
         }
         catch(ValidationException $e)
         {
-            $response['responseType'] = 'success';
+            $response['responseType'] = 'error';
             $response['message'] = $e->getErrors();
         }
 
-        return json_encode($response);
+        return Response::json($response);
 	}
 }

@@ -1,12 +1,13 @@
 @extends('layouts.master')
 
 @section('title')
-    Add New Customer Create
+    Create New Customer
 @stop
 
 @section('content')
 
     <h2>Customer Create Form</h2>
+    <hr />
     {{ Form::open(array('route' => 'customers.store')) }}
         @include('customers/_formBody')
     {{ Form::close() }}

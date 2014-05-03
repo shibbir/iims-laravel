@@ -19,9 +19,8 @@
                 <tr>
                     <th>Title</th>
                     <th>Category</th>
-                    <th>Description</th>
+                    <th>Supplier</th>
                     <th>Unit Price</th>
-                    <th>Warranty</th>
                     <th>Quantity</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -31,15 +30,14 @@
                 @foreach($products as $product)
                     <tr>
                         <td>{{ $product->title }}</td>
-                        <td>{{ $product->category_id }}</td>
-                        <td style="width: 22%;">{{ $product->description }}</td>
+                        <td>{{ link_to("/categories/{$product->category->id}", $product->category->title) }}</td>
+                        <td>{{ link_to("/suppliers/{$product->supplier->id}", $product->supplier->company_name) }}</td>
                         <td>{{ $product->unit_price }}</td>
-                        <td>{{ $product->warranty }}</td>
                         <td>{{ $product->quantity }}</td>
                         <td>{{ $product->is_available }}</td>
                         <td>
-                            {{ link_to("/products/{$product->id }", 'Show', ['class' => 'btn btn-info']) }}
-                            {{ link_to("/products/{$product->id }/edit", 'Edit', ['class' => 'btn btn-primary']) }}
+                            {{ link_to("/products/{$product->id }", 'Details', ['class' => 'btn btn-info btn-sm']) }}
+                            {{ link_to("/products/{$product->id }/edit", 'Edit', ['class' => 'btn btn-primary btn-sm']) }}
                         </td>
                     </tr>
                 @endforeach

@@ -28,20 +28,12 @@ class SessionsController extends \BaseController {
             return Redirect::intended('dashboard');
         }
 
-        $data = [
-            'flash_type' => 'danger',
-            'flash_message' => 'Oops! Invalid username or password.'
-        ];
-        return Redirect::back()->withInput()->with($data);
+        return Redirect::back()->withInput()->with($this->getErrorNotification('Oops! Invalid username or password.'));
     }
 
 	public function destroy()
 	{
         Auth::logout();
-        $data = [
-            'flash_type' => 'success',
-            'flash_message' => 'You have been logged out.'
-        ];
-        return Redirect::route('login')->with($data);
+        return Redirect::route('login')->with($this->getSuccessNotification('You have been logged out.'));
 	}
 }

@@ -34,8 +34,8 @@
                         <td>{{ $user->email }}</td>
                         <td style="width: 22%;">{{ $user->address }}</td>
                         <td>
-                            {{ link_to("/users/{$user->id }", 'Show', ['class' => 'btn btn-info']) }}
-                            {{ link_to("/users/{$user->id }/edit", 'Edit', ['class' => 'btn btn-primary']) }}
+                            {{ link_to("/users/{$user->id }", 'Show', ['class' => 'btn btn-info btn-sm']) }}
+                            {{ link_to("/users/{$user->id }/edit", 'Edit', ['class' => 'btn btn-primary btn-sm']) }}
                         </td>
                     </tr>
                 @endforeach

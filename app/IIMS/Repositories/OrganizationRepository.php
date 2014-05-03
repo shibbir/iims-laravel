@@ -5,9 +5,10 @@ use IIMS\Interfaces\IOrganizationRepository;
 
 class OrganizationRepository implements IOrganizationRepository {
 
-    public function find($id)
+    public function find($id, $fields = [])
     {
-        return Organization::find($id);
+        if(empty($fields)) return Organization::findOrFail($id);
+        return Organization::findOrFail($id, $fields);
     }
 
     public function update($id, $input)
@@ -18,14 +19,15 @@ class OrganizationRepository implements IOrganizationRepository {
         $organization->save();
     }
 
-    public function findAll()
+    public function findAll($fields = [])
     {
-        // TODO: Implement findAll() method.
+        if(empty($fields)) return Organization::all();
+        return Organization::get($fields);
     }
 
     public function create($input)
     {
-        // TODO: Implement create() method.
+        Organization::create($input);
     }
 
     public function delete($id)

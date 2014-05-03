@@ -11,11 +11,12 @@
                 <div class="widget-header"><h4>Quick Dashboard</h4></div>
                 <div class="widget-body">
                     <ul class="cpanel">
-                        <li><a class="button1" href="users/profile">My Profile</a></li>
+                        <li><a class="button1" href="profile">My Profile</a></li>
                         <li><a class="button2" href="users">Staff</a></li>
                         <li><a class="button3" href="customers">Customer</a></li>
                         <li><a class="button4" href="products">Inventory</a></li>
                         <li><a class="button5" href="invoice">Invoice</a></li>
+                        <li><a class="button5" href="suppliers">Supplier</a></li>
                     </ul>
                 </div>
             </div>
@@ -35,7 +36,6 @@
                     </div>
                 </div>
                 <div class="widget-body">
-                    @include('organization.organization-add-modal')
                     @include('organization.organization-edit-modal')
 
                     <div ng-if="organization">
@@ -58,13 +58,6 @@
                             <span class="label label-info">Website</span>
                             <a target="_blank" href="[[ organization.website ]]" ng-bind="organization.website"></a>
                         </p>
-                    </div>
-                    <div ng-if="!organization">
-                        <div class="pager text-error"><strong>Please add your organization information.</strong></div>
-                        <a href="#ModalOrganizationAdd" role="button" class="btn btn-success" data-toggle="modal">
-                            <i class="icon-plus icon-white icon-large"></i>
-                            Add Organization Info
-                        </a>
                     </div>
                 </div>
             </div>

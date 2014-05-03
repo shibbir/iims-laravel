@@ -13,6 +13,7 @@ class ProductsTableSeeder extends Seeder {
         {
             Product::create([
                 'category_id' => $faker->randomNumber(1, 10),
+                'supplier_id' => $faker->randomNumber(1, 15),
                 'title' => $faker->unique()->name,
                 'description' => $faker->sentence(),
                 'quantity' => $faker->randomDigitNotNull,

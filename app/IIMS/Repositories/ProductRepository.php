@@ -5,14 +5,16 @@ use IIMS\Interfaces\IProductRepository;
 
 class ProductRepository implements IProductRepository {
 
-    public function findAll()
+    public function findAll($fields = [])
     {
-        return Product::paginate(15);
+        if(empty($fields)) return Product::paginate(15);
+        return Product::paginate(15, $fields);
     }
 
-    public function find($id)
+    public function find($id, $fields = [])
     {
-        return Product::findOrFail($id);
+        if(empty($fields)) return Product::findOrFail($id);
+        return Product::findOrFail($id, $fields);
     }
 
     public function create($input)
@@ -32,5 +34,8 @@ class ProductRepository implements IProductRepository {
     }
 
     public function delete($id)
-    {}
+    {
+        $product = Product::find($id);
+        $product->delete();
+    }
 }

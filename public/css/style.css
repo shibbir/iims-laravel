@@ -32,8 +32,9 @@ textarea {
 
 /********************************** START => HELPER CSS ************************************************/
 
+.error      { color: #FF0000; }
 .green		{ color: #468847; }
-.red		{ color: red; }
+.red		{ color: #FF0000; }
 .bold 		{ font-weight: bold; }
 .inline		{ display: inline; }
 .textRight 	{ text-align: right; }

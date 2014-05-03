@@ -32,8 +32,8 @@
                         <td>{{ $customer->contact }}</td>
                         <td>{{ $customer->address }}</td>
                         <td>
-                            {{ link_to("/customers/{$customer->id }", 'Show', ['class' => 'btn btn-info']) }}
-                            {{ link_to("/customers/{$customer->id }/edit", 'Edit', ['class' => 'btn btn-primary']) }}
+                            {{ link_to("/customers/{$customer->id }", 'Show', ['class' => 'btn btn-info btn-sm']) }}
+                            {{ link_to("/customers/{$customer->id }/edit", 'Edit', ['class' => 'btn btn-primary btn-sm']) }}
                         </td>
                     </tr>
                 @endforeach

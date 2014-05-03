@@ -6,8 +6,14 @@
 
 <div class="form-group">
     {{ Form::label('category_id', 'Category') }}
-    {{ Form::select('category_id', array(1 => 'Miscellaneous', 2 => 'Processor', 3 => 'Motherboard'), ['class' => 'form-control']) }}
+    {{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
     {{ $errors->first('category_id', '<span class="error">:message</span>')}}
+</div>
+
+<div class="form-group">
+    {{ Form::label('supplier_id', 'Supplier') }}
+    {{ Form::select('supplier_id', $suppliers, null, ['class' => 'form-control']) }}
+    {{ $errors->first('supplier_id', '<span class="error">:message</span>')}}
 </div>
 
 <div class="form-group">
@@ -37,4 +43,5 @@
 <button type="submit" class="btn btn-success">
     <i class="icon-plus icon-white"></i> {{ isset($buttonText) ? $buttonText : "Add Product" }}
 </button>
+
 <button type="reset" class="btn">Reset</button>

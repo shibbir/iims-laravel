@@ -2,28 +2,36 @@
 
 use IIMS\Forms\Product;
 use IIMS\Interfaces\IProductRepository;
+use IIMS\Interfaces\ICategoryRepository;
+use IIMS\Interfaces\ISupplierRepository;
 
 class ProductsController extends \BaseController {
 
     protected $productForm;
     protected $productRepository;
+    protected $categoryRepository;
+    protected $supplierRepository;
 
-    function __construct(IProductRepository $productRepository, Product $productForm)
+    function __construct(IProductRepository $productRepository, ICategoryRepository $categoryRepository, ISupplierRepository $supplierRepository, Product $productForm)
     {
         $this->beforeFilter('auth');
         $this->productForm = $productForm;
         $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->supplierRepository = $supplierRepository;
     }
 
 	public function index()
 	{
-        $products = $this->productRepository->findAll();
+        $products = $this->productRepository->findAll(['id', 'title', 'category_id', 'supplier_id', 'unit_price', 'quantity', 'is_available']);
         return View::make('products.index')->withProducts($products);
 	}
 
 	public function create()
 	{
-        return View::make('products.create');
+        $categories = $this->categoryRepository->getCategoriesAsList('title', 'id');
+        $suppliers = $this->supplierRepository->getSuppliersAsList('company_name', 'id');
+        return View::make('products.create', compact('categories', 'suppliers'));
 	}
 
 	public function store()
@@ -31,12 +39,7 @@ class ProductsController extends \BaseController {
         $this->productForm->validate(Input::all());
         $this->productRepository->create(Input::all());
 
-        $data = [
-            'flash_type' => 'success',
-            'flash_message' => 'Product added successfully.'
-        ];
-
-        return Redirect::route('products.index')->with($data);
+        return Redirect::route('products.index')->with($this->getSuccessNotification('Product added successfully.'));
 	}
 
 	public function show($id)
@@ -48,7 +51,9 @@ class ProductsController extends \BaseController {
 	public function edit($id)
 	{
         $product = $this->productRepository->find($id);
-        return View::make('products.edit')->withProduct($product);
+        $categories = $this->categoryRepository->getCategoriesAsList('title', 'id');
+        $suppliers = $this->supplierRepository->getSuppliersAsList('company_name', 'id');
+        return View::make('products.edit', compact('product', 'categories', 'suppliers'));
 	}
 
 	public function update($id)
@@ -56,12 +61,7 @@ class ProductsController extends \BaseController {
         $this->productForm->validate(Input::all());
         $this->productRepository->update($id, Input::all());
 
-        $data = [
-            'flash_type' => 'success',
-            'flash_message' => 'Product updated successfully.'
-        ];
-
-        return Redirect::route('products.edit', $id)->with($data);
+        return Redirect::route('products.edit', $id)->with($this->getSuccessNotification('Product updated successfully.'));
 	}
 
 	public function destroy($id)

@@ -10,5 +10,7 @@ class BackendServiceProvider extends ServiceProvider {
         $this->app->bind('IIMS\Interfaces\IOrganizationRepository', 'IIMS\Repositories\OrganizationRepository');
         $this->app->bind('IIMS\Interfaces\ICustomerRepository', 'IIMS\Repositories\CustomerRepository');
         $this->app->bind('IIMS\Interfaces\IProductRepository', 'IIMS\Repositories\ProductRepository');
+        $this->app->bind('IIMS\Interfaces\ICategoryRepository', 'IIMS\Repositories\CategoryRepository');
+        $this->app->bind('IIMS\Interfaces\ISupplierRepository', 'IIMS\Repositories\SupplierRepository');
     }
 }

@@ -45,4 +45,5 @@
 <button type="submit" class="btn btn-success">
     <i class="icon-plus icon-white"></i> {{ isset($buttonText) ? $buttonText : "Create User" }}
 </button>
+
 <button type="reset" class="btn">Reset</button>

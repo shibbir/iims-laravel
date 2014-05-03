@@ -2,8 +2,11 @@
 
 class User extends FormValidator {
     protected $rules = [
-        'username' => 'required|unique:users',
-        'name'     => 'required',
-        'email'    => 'required|email|unique:users'
+        'username'              => 'required|alpha_num|unique:users',
+        'password'              => 'required|alpha_num|between:6,15|confirmed',
+        'password_confirmation' => 'required|alpha_num|between:6,15',
+        'name'                  => 'required',
+        'address'               => 'required',
+        'email'                 => 'required|email|unique:users'
     ];
 }

@@ -5,14 +5,16 @@ use IIMS\Interfaces\IUserRepository;
 
 class UserRepository implements IUserRepository {
 
-    public function findAll()
+    public function findAll($fields = [])
     {
-        return User::paginate(15);
+        if(empty($fields)) return User::paginate(15);
+        return User::paginate(15, $fields);
     }
 
-    public function find($id)
+    public function find($id, $fields = [])
     {
-        return User::findOrFail($id);
+        if(empty($fields)) return User::findOrFail($id);
+        return User::findOrFail($id, $fields);
     }
 
     public function create($input)
@@ -29,5 +31,8 @@ class UserRepository implements IUserRepository {
     }
 
     public function delete($id)
-    {}
+    {
+        $user = User::find($id);
+        $user->delete();
+    }
 }
