@@ -32,7 +32,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventory <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>{{ HTML::link('/products', 'Product List')}}</li>
+                        <li>{{ HTML::link('/inventory', 'Product Inventory')}}</li>
                         <li>{{ HTML::link('/products/create', 'Create New Product')}}</li>
                         <li>{{ HTML::link('/categories', 'Manage Categories')}}</li>
                     </ul>

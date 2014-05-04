@@ -10,8 +10,8 @@
     <hr />
     <div class="row">
         <div class="col-xs-6 col-md-4">
-            {{ Form::open(array('route' => 'products.store')) }}
-                @include('products/_formBody')
+            {{ Form::open(array('route' => ['categories.products.store', $selected_category_id])) }}
+                @include('products._formBody')
             {{ Form::close() }}
         </div>
     </div>

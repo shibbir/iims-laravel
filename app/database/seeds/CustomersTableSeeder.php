@@ -2,6 +2,7 @@
 
 use IIMS\Models\Customer;
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
 
 class CustomersTableSeeder extends Seeder {
 

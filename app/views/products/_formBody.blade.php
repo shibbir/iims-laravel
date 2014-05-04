@@ -6,7 +6,7 @@
 
 <div class="form-group">
     {{ Form::label('category_id', 'Category') }}
-    {{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
+    {{ Form::select('category_id', $categories, $selected_category_id, ['class' => 'form-control']) }}
     {{ $errors->first('category_id', '<span class="error">:message</span>')}}
 </div>
 

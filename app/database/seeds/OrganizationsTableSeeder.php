@@ -1,6 +1,7 @@
 <?php
 
 use IIMS\Models\Organization;
+use Illuminate\Database\Seeder;
 
 class OrganizationsTableSeeder extends Seeder {
 

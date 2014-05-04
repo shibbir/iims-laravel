@@ -1,15 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-    Product Page
+    Products Page
 @stop
 
 @section('content')
-    {{ link_to_route('products.create', 'Add New Product', [], $attributes = ['class' => 'btn btn-primary']) }}
+    {{ link_to_route('categories.products.create', 'Add New Product', [$category->id], $attributes = ['class' => 'btn btn-primary']) }}
 
     @include('shared._flashMessage')
 
-    <h3>All Products</h3>
+    <h3>All Products Under {{ $category->title }} Category</h3>
 
     <hr />
 
@@ -30,14 +30,14 @@
                 @foreach($products as $product)
                     <tr>
                         <td>{{ $product->title }}</td>
-                        <td>{{ link_to("/categories/{$product->category->id}", $product->category->title) }}</td>
-                        <td>{{ link_to("/suppliers/{$product->supplier->id}", $product->supplier->company_name) }}</td>
+                        <td>{{ link_to("/categories/{$category->id}", $category->title) }}</td>
+                        <td>{{ link_to("/suppliers/{$supplier->id}", $supplier->company_name) }}</td>
                         <td>{{ $product->unit_price }}</td>
                         <td>{{ $product->quantity }}</td>
                         <td>{{ $product->is_available }}</td>
                         <td>
-                            {{ link_to("/products/{$product->id }", 'Details', ['class' => 'btn btn-info btn-sm']) }}
-                            {{ link_to("/products/{$product->id }/edit", 'Edit', ['class' => 'btn btn-primary btn-sm']) }}
+                            {{ link_to("/categories/{$category->id}/products/{$product->id }", 'Details', ['class' => 'btn btn-info btn-sm']) }}
+                            {{ link_to("/categories/{$category->id}/products/{$product->id }/edit", 'Edit', ['class' => 'btn btn-primary btn-sm']) }}
                         </td>
                     </tr>
                 @endforeach

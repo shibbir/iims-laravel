@@ -7,7 +7,7 @@ Event::listen('illuminate.query', function($sql)
 
 # Dashboard
 Route::get('/', 'DashboardController@index')->before('auth');
-Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index'])->before('auth');
+Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index'])->before('auth');
 
 # Session
 Route::get('login', ['as' => 'login', 'uses' => 'SessionsController@create']);
@@ -24,11 +24,14 @@ Route::resource('organizations', 'OrganizationsController', ['only' => ['show', 
 # Customer
 Route::resource('customers', 'CustomersController');
 
-# Product
-Route::resource('products', 'ProductsController');
-
 # Category
-Route::resource('categories', 'CategoryController');
+Route::resource('categories', 'CategoryController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
+Route::get('categories/{categories}/delete', 'CategoryController@delete');
+
+# Product
+Route::get('inventory', ['as' => 'inventory', 'uses' => 'ProductsController@inventory']);
+Route::get('products/create', 'ProductsController@create');
+Route::resource('categories.products', 'ProductsController');
 
 # Supplier
 Route::resource('suppliers', 'SuppliersController');

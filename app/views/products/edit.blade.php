@@ -9,8 +9,8 @@
 
     @include('shared._flashMessage')
 
-    {{ Form::model($product, ['method' => 'PATCH', 'route' => ['products.update', $product->id]]) }}
-        @include('products/_formBody', ['buttonText' => 'Update Product'])
+    {{ Form::model($product, ['method' => 'PATCH', 'route' => ['categories.products.update', $product->category_id, $product->id]]) }}
+        @include('products._formBody', ['buttonText' => 'Update Product'])
     {{ Form::close() }}
 
 @stop

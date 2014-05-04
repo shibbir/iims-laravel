@@ -2,6 +2,7 @@
 
 use IIMS\Models\Category;
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
 
 class CategoriesTableSeeder extends Seeder {
 

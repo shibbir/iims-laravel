@@ -8,6 +8,6 @@ class Category extends \Eloquent {
 
     public function products()
     {
-        return $this->hasMany('Product');
+        return $this->hasMany('IIMS\Models\Product');
     }
 }

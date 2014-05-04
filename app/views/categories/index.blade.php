@@ -28,9 +28,9 @@
                         <td>{{ $category->title }}</td>
                         <td>{{ $category->description }}</td>
                         <td>
-                            {{ link_to("/categories/{$category->id }", 'Show Products', ['class' => 'btn btn-info btn-sm']) }}
+                            {{ link_to("/categories/{$category->id }/products", 'Show Products', ['class' => 'btn btn-info btn-sm']) }}
                             {{ link_to("/categories/{$category->id }/edit", 'Edit', ['class' => 'btn btn-primary btn-sm']) }}
-                            {{ link_to("/categories/{$category->id }/edit", 'Delete', ['class' => 'btn btn-danger btn-sm']) }}
+                            {{ link_to("/categories/{$category->id }/delete", 'Delete', ['class' => 'btn btn-danger btn-sm']) }}
                         </td>
                     </tr>
                 @endforeach

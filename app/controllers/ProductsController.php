@@ -21,47 +21,60 @@ class ProductsController extends \BaseController {
         $this->supplierRepository = $supplierRepository;
     }
 
-	public function index()
+    public function inventory()
+    {
+        return View::make('products.inventory');
+    }
+
+	public function index($category_id)
 	{
-        $products = $this->productRepository->findAll(['id', 'title', 'category_id', 'supplier_id', 'unit_price', 'quantity', 'is_available']);
-        return View::make('products.index')->withProducts($products);
+        $supplier = $this->supplierRepository->find(1, ['id', 'company_name']);
+        $category = $this->categoryRepository->find($category_id, ['id', 'title']);
+        $products = $this->productRepository->findAllByCategory($category_id, ['id', 'title', 'category_id', 'supplier_id', 'unit_price', 'quantity', 'is_available']);
+
+        return View::make('products.index', compact('products', 'category', 'supplier'));
 	}
 
-	public function create()
+	public function create($category_id)
 	{
+        $selected_category_id = $category_id;
         $categories = $this->categoryRepository->getCategoriesAsList('title', 'id');
         $suppliers = $this->supplierRepository->getSuppliersAsList('company_name', 'id');
-        return View::make('products.create', compact('categories', 'suppliers'));
+
+        return View::make('products.create', compact('selected_category_id', 'categories', 'suppliers'));
 	}
 
-	public function store()
+	public function store($category_id)
 	{
         $this->productForm->validate(Input::all());
         $this->productRepository->create(Input::all());
 
-        return Redirect::route('products.index')->with($this->getSuccessNotification('Product added successfully.'));
+        return Redirect::to("categories/$category_id/products")->with($this->getSuccessNotification('Product added successfully.'));
 	}
 
-	public function show($id)
+	public function show($category_id, $product_id)
 	{
-        $product = $this->productRepository->find($id);
+        $product = $this->productRepository->findWithCategoryByCategory($category_id, $product_id);
+
         return View::make('products.show')->withProduct($product);
 	}
 
-	public function edit($id)
+	public function edit($category_id, $product_id)
 	{
-        $product = $this->productRepository->find($id);
+        $selected_category_id = $category_id;
+        $product = $this->productRepository->findByCategory($category_id, $product_id);
         $categories = $this->categoryRepository->getCategoriesAsList('title', 'id');
         $suppliers = $this->supplierRepository->getSuppliersAsList('company_name', 'id');
-        return View::make('products.edit', compact('product', 'categories', 'suppliers'));
+
+        return View::make('products.edit', compact('selected_category_id', 'product', 'categories', 'suppliers'));
 	}
 
-	public function update($id)
+	public function update($category_id, $product_id)
 	{
         $this->productForm->validate(Input::all());
-        $this->productRepository->update($id, Input::all());
+        $this->productRepository->update($product_id, Input::all());
 
-        return Redirect::route('products.edit', $id)->with($this->getSuccessNotification('Product updated successfully.'));
+        return Redirect::to("categories/$category_id/products/$product_id/edit", $product_id)->with($this->getSuccessNotification('Product updated successfully.'));
 	}
 
 	public function destroy($id)
