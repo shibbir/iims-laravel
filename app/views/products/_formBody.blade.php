@@ -23,9 +23,15 @@
 </div>
 
 <div class="form-group">
-    {{ Form::label('unit_price', 'Unit Price', ['class' => 'control-label']) }}
-    {{ Form::text('unit_price', null, ['class' => 'form-control']) }}
-    {{ $errors->first('unit_price', '<span class="error">:message</span>')}}
+    {{ Form::label('buy_price', 'Buy Price', ['class' => 'control-label']) }}
+    {{ Form::text('buy_price', null, ['class' => 'form-control']) }}
+    {{ $errors->first('buy_price', '<span class="error">:message</span>')}}
+</div>
+
+<div class="form-group">
+    {{ Form::label('retail_price', 'Retail Price', ['class' => 'control-label']) }}
+    {{ Form::text('retail_price', null, ['class' => 'form-control']) }}
+    {{ $errors->first('retail_price', '<span class="error">:message</span>')}}
 </div>
 
 <div class="form-group">
@@ -45,3 +51,9 @@
 </button>
 
 <button type="reset" class="btn">Reset</button>
+
+<script>
+    window.onload = function () {
+        $("#description").cleditor();
+    };
+</script>

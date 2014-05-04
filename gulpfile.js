@@ -21,8 +21,6 @@ gulp.task("css", function() {
 gulp.task("scripts", function() {
     return gulp.src([
             "public/bower_components/bootstrap/dist/js/bootstrap.js",
-            "public/js/libs/kendo.web.min.js",
-            "public/js/libs/spin.min.js",
             "public/bower_components/angular/angular.js",
             "public/bower_components/highcharts.com/js/highcharts.src.js",
             "public/js/libs/jquery.printPage.js",

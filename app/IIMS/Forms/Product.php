@@ -5,6 +5,6 @@ class Product extends FormValidator {
         'category_id' => 'required',
         'title'       => 'required|unique:products',
         'quantity'    => 'integer',
-        'unit_price'  => 'required'
+        'buy_price'   => 'required'
     ];
 }

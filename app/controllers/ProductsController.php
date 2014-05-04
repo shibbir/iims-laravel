@@ -30,7 +30,7 @@ class ProductsController extends \BaseController {
 	{
         $supplier = $this->supplierRepository->find(1, ['id', 'company_name']);
         $category = $this->categoryRepository->find($category_id, ['id', 'title']);
-        $products = $this->productRepository->findAllByCategory($category_id, ['id', 'title', 'category_id', 'supplier_id', 'unit_price', 'quantity', 'is_available']);
+        $products = $this->productRepository->findAllByCategory($category_id, ['id', 'title', 'category_id', 'supplier_id', 'quantity', 'updated_at']);
 
         return View::make('products.index', compact('products', 'category', 'supplier'));
 	}

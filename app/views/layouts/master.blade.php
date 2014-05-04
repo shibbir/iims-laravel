@@ -18,6 +18,7 @@
     {{ HTML::style('bower_components/bootstrap/dist/css/bootstrap.css') }}
     {{ HTML::style('bower_components/fontawesome/css/font-awesome.css') }}
     {{ HTML::style('bower_components/toastr/toastr.css') }}
+    {{ HTML::style('bower_components/cleditor1_4_4/jquery.cleditor.css') }}
     {{ HTML::style('css/style.css') }}
 
     <!--[if lt IE 9]>
@@ -39,7 +40,7 @@
     </div>
     {{ HTML::script('bower_components/jquery/dist/jquery.js') }}
     {{ HTML::script('bower_components/bootstrap/dist/js/bootstrap.js') }}
-    {{ HTML::script('js/libs/spin.min.js') }}
+    {{ HTML::script('bower_components/cleditor1_4_4/jquery.cleditor.js') }}
     {{ HTML::script('bower_components/angular/angular.js') }}
     {{ HTML::script('bower_components/toastr/toastr.js') }}
     {{ HTML::script('js/libs/highcharts.src.js') }}

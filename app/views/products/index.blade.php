@@ -20,9 +20,8 @@
                     <th>Title</th>
                     <th>Category</th>
                     <th>Supplier</th>
-                    <th>Unit Price</th>
-                    <th>Quantity</th>
-                    <th>Status</th>
+                    <th>Available</th>
+                    <th>Last Updated</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -32,9 +31,8 @@
                         <td>{{ $product->title }}</td>
                         <td>{{ link_to("/categories/{$category->id}", $category->title) }}</td>
                         <td>{{ link_to("/suppliers/{$supplier->id}", $supplier->company_name) }}</td>
-                        <td>{{ $product->unit_price }}</td>
-                        <td>{{ $product->quantity }}</td>
-                        <td>{{ $product->is_available }}</td>
+                        <td>{{ $product->quantity }} in 3 variants</td>
+                        <td>{{ $product->updated_at }}</td>
                         <td>
                             {{ link_to("/categories/{$category->id}/products/{$product->id }", 'Details', ['class' => 'btn btn-info btn-sm']) }}
                             {{ link_to("/categories/{$category->id}/products/{$product->id }/edit", 'Edit', ['class' => 'btn btn-primary btn-sm']) }}
