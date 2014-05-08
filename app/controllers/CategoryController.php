@@ -17,9 +17,11 @@ class CategoryController extends \BaseController {
 
 	public function index()
 	{
-        $categories = $this->categoryRepository->findAll();
-        return View::make('categories.index')->withCategories($categories);
-	}
+        if(Request::ajax()) {
+            return $this->categoryRepository->findAllAsList('title', 'id');
+        }
+        return View::make('categories.index')->withCategories($this->categoryRepository->findAll());
+    }
 
 	public function create()
 	{

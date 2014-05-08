@@ -18,7 +18,7 @@
     {{ HTML::style('bower_components/bootstrap/dist/css/bootstrap.css') }}
     {{ HTML::style('bower_components/fontawesome/css/font-awesome.css') }}
     {{ HTML::style('bower_components/toastr/toastr.css') }}
-    {{ HTML::style('bower_components/cleditor1_4_4/jquery.cleditor.css') }}
+    {{ HTML::style('css/jquery.cleditor.css') }}
     {{ HTML::style('css/style.css') }}
 
     <!--[if lt IE 9]>
@@ -40,14 +40,15 @@
     </div>
     {{ HTML::script('bower_components/jquery/dist/jquery.js') }}
     {{ HTML::script('bower_components/bootstrap/dist/js/bootstrap.js') }}
-    {{ HTML::script('bower_components/cleditor1_4_4/jquery.cleditor.js') }}
     {{ HTML::script('bower_components/angular/angular.js') }}
     {{ HTML::script('bower_components/toastr/toastr.js') }}
+    {{ HTML::script('js/libs/jquery.cleditor.js') }}
     {{ HTML::script('js/libs/highcharts.src.js') }}
     {{ HTML::script('js/libs/jquery.printPage.js') }}
     {{ HTML::script('js/application/app.js') }}
-    {{ HTML::script('js/application/controllers/dashboard-controller.js') }}
-    {{ HTML::script('js/application/services/api-service.js') }}
-    {{ HTML::script('js/application/services/notifier-service.js') }}
+    {{ HTML::script('js/application/services/api.js') }}
+    {{ HTML::script('js/application/services/notifier.js') }}
+    {{ HTML::script('js/application/controllers/dashboard.js') }}
+    {{ HTML::script('js/application/controllers/sales-invoice.js') }}
 </body>
 </html>

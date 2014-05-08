@@ -11,7 +11,7 @@ class SupplierRepository implements ISupplierRepository {
         return Supplier::paginate(10, $fields);
     }
 
-    public function getSuppliersAsList($value, $key)
+    public function findAllAsList($value, $key)
     {
         return Supplier::lists($value, $key);
     }

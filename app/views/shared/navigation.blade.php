@@ -44,6 +44,13 @@
                         <li>{{ HTML::link('/suppliers/create', 'Create New Supplier')}}</li>
                     </ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sales <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>{{ HTML::link('/sales', 'Sales Invoices')}}</li>
+                        <li>{{ HTML::link('/sales/create', 'Create Sale Invoice')}}</li>
+                    </ul>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">

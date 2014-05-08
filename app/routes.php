@@ -35,3 +35,7 @@ Route::resource('categories.products', 'ProductsController');
 
 # Supplier
 Route::resource('suppliers', 'SuppliersController');
+
+# Invoices
+Route::resource('sales', 'SalesController');
+Route::resource('purchases', 'PurchasesController');

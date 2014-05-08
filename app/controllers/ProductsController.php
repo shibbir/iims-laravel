@@ -38,8 +38,8 @@ class ProductsController extends \BaseController {
 	public function create($category_id)
 	{
         $selected_category_id = $category_id;
-        $categories = $this->categoryRepository->getCategoriesAsList('title', 'id');
-        $suppliers = $this->supplierRepository->getSuppliersAsList('company_name', 'id');
+        $categories = $this->categoryRepository->findAllAsList('title', 'id');
+        $suppliers = $this->supplierRepository->findAllAsList('company_name', 'id');
 
         return View::make('products.create', compact('selected_category_id', 'categories', 'suppliers'));
 	}
@@ -63,8 +63,8 @@ class ProductsController extends \BaseController {
 	{
         $selected_category_id = $category_id;
         $product = $this->productRepository->findByCategory($category_id, $product_id);
-        $categories = $this->categoryRepository->getCategoriesAsList('title', 'id');
-        $suppliers = $this->supplierRepository->getSuppliersAsList('company_name', 'id');
+        $categories = $this->categoryRepository->findAllAsList('title', 'id');
+        $suppliers = $this->supplierRepository->findAllAsList('company_name', 'id');
 
         return View::make('products.edit', compact('selected_category_id', 'product', 'categories', 'suppliers'));
 	}

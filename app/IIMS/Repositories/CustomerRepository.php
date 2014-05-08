@@ -11,6 +11,11 @@ class CustomerRepository implements ICustomerRepository {
         return Customer::paginate(10, $fields);
     }
 
+    public function findAllAsList($value, $key)
+    {
+        return Customer::lists($value, $key);
+    }
+
     public function find($id, $fields = [])
     {
         if(empty($fields)) return Customer::findOrFail($id);

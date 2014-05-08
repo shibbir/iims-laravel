@@ -1,5 +1,5 @@
 <?php namespace IIMS\Interfaces;
 
 interface ICategoryRepository extends IRepository {
-    public function getCategoriesAsList($value, $key);
+    public function findAllAsList($value, $key);
 }

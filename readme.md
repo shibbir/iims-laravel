@@ -6,7 +6,6 @@ Tools and Technology used in this project:
 
 * [Laravel](http://laravel.com/)
 * [Twitter Bootstrap](http://getbootstrap.com/)
-* [KendoUI](http://www.kendoui.com/)
 * [AngularJS](http://angularjs.org/)
 * [MySQL](http://www.mysql.com/)
 

@@ -120,8 +120,8 @@
             });
         };
         $scope.getOrganization = function() {
-            apiService.call("/organizations/1", "GET").then(function(result) {
-                $scope.organization = result;
+            apiService.get("/organizations/1").then(function(result) {
+                $scope.organization = result.data;
             });
         }();
         $scope.getInventoryChartData = function() {
@@ -153,7 +153,7 @@
             highchartsInvoiceByYear(2013, data, "invoice-chart");
         }();
         $scope.updateOrganization = function() {
-            apiService.call("/organizations/" + $scope.organization.id, $("form[name=OrganizationEditForm]").serialize(), "PATCH").then(function(result) {
+            apiService.save("/organizations/" + $scope.organization.id, $("form[name=OrganizationEditForm]").serialize(), "PATCH").then(function(result) {
                 var response = {
                     responseType: result.responseType,
                     message: "Record updated successfully."
