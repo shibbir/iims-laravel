@@ -3,8 +3,8 @@
 (function(app) {
     app.factory("apiService", [
         "$http", "$q", function($http, $q) {
-            var get = function(url) {
-                return $http.get(url);
+            var get = function(url, config) {
+                return $http.get(url, config);
             };
             var save = function(url, data, method) {
                 var deferred = $q.defer();

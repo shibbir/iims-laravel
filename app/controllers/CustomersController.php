@@ -17,6 +17,10 @@ class CustomersController extends \BaseController {
 
 	public function index()
 	{
+        $query = Request::get('q');
+        if($query) {
+            return $this->customerRepository->findByContact($query, ['id', 'first_name', 'last_name', 'contact']);
+        }
         $customers = $this->customerRepository->findAll(['id', 'first_name', 'last_name', 'contact', 'address']);
         return View::make('customers.index')->withCustomers($customers);
 	}
@@ -54,7 +58,8 @@ class CustomersController extends \BaseController {
         return Redirect::route('customers.edit', $id)->with($this->getSuccessNotification('Customer updated successfully.'));
 	}
 
-	public function destroy($id)
-	{
-	}
+    public function findByContact($contact)
+    {
+        return $this->customerRepository->findByContact($contact);
+    }
 }

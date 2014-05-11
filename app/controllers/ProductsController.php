@@ -28,6 +28,9 @@ class ProductsController extends \BaseController {
 
 	public function index($category_id)
 	{
+        if(Request::ajax()) {
+            return $this->productRepository->findAllByCategory($category_id, ['id', 'title', 'retail_price', 'quantity', 'updated_at']);
+        }
         $supplier = $this->supplierRepository->find(1, ['id', 'company_name']);
         $category = $this->categoryRepository->find($category_id, ['id', 'title']);
         $products = $this->productRepository->findAllByCategory($category_id, ['id', 'title', 'category_id', 'supplier_id', 'quantity', 'updated_at']);
@@ -75,9 +78,5 @@ class ProductsController extends \BaseController {
         $this->productRepository->update($product_id, Input::all());
 
         return Redirect::to("categories/$category_id/products/$product_id/edit", $product_id)->with($this->getSuccessNotification('Product updated successfully.'));
-	}
-
-	public function destroy($id)
-	{
 	}
 }
