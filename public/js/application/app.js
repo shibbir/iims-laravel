@@ -1,14 +1,16 @@
 "use strict";
 
-(function () {
-    var iimsApp = angular.module("iimsApp", []);
+var _app = _app || {};
 
-    iimsApp.config(["$interpolateProvider", function($interpolateProvider) {
+(function () {
+    _app = angular.module("iimsApp", []);
+
+    _app.config(["$interpolateProvider", function($interpolateProvider) {
         $interpolateProvider.startSymbol("[[");
         $interpolateProvider.endSymbol("]]");
     }]);
 
-    iimsApp.config(["$httpProvider", function ($httpProvider) {
+    _app.config(["$httpProvider", function ($httpProvider) {
         $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
     }]);
 })();

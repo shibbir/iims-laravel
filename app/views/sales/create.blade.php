@@ -131,31 +131,31 @@
                     <fieldset>
                 </div>
             </div>
-            <div class="row" id="">
+            <div class="row">
                 <div class="col-xs-12 col-md-4 col-sm-offset-7">
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
                             <label class="col-sm-5 control-label">Service Charge</label>
                             <div class="col-sm-7">
-                                <input type="number" class="form-control" />
+                                <input type="number" class="form-control" ng-model="data.serviceCharge" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-5 control-label">Total Discount</label>
                             <div class="col-sm-7">
-                                <input type="number" class="form-control" />
+                                <input type="number" class="form-control" ng-model="data.totalDiscount" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-5 control-label">VAT</label>
                             <div class="col-sm-7">
-                                <input type="number" class="form-control" />
+                                <input type="number" class="form-control" ng-model="data.vat" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-5 control-label">Grand Total</label>
                             <div class="col-sm-7">
-                                <input type="number" class="form-control" />
+                                <input type="number" class="form-control" ng-value="getGrandTotal()" />
                             </div>
                         </div>
                     </form>

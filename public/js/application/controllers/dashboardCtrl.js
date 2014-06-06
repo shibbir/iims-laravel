@@ -153,13 +153,11 @@
             highchartsInvoiceByYear(2013, data, "invoice-chart");
         }();
         $scope.updateOrganization = function() {
-            apiService.save("/organizations/" + $scope.organization.id, $("form[name=OrganizationEditForm]").serialize(), "PATCH").then(function(result) {
-                var response = {
-                    responseType: result.responseType,
-                    message: "Record updated successfully."
-                };
-                notifierService.notify(response);
+            apiService.patch("/organizations/" + $scope.organization.id, $("form[name=OrganizationEditForm]").serialize()).success(function() {
+                notifierService.notifySuccess("Record updated successfully.");
+            }).error(function() {
+                notifierService.notifyError("Something happened");
             });
         };
     }]);
-})(angular.module("iimsApp"));
+})(_app);

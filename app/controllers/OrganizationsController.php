@@ -21,14 +21,10 @@ class OrganizationsController extends \BaseController {
         try
         {
             $this->organizationRepository->update($id, Input::all());
-            $response['responseType'] = 'success';
         }
         catch(ValidationException $e)
         {
-            $response['responseType'] = 'error';
-            $response['message'] = $e->getErrors();
+            return Response::json($e->getErrors());
         }
-
-        return Response::json($response);
 	}
 }

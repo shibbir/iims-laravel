@@ -224,3 +224,16 @@ ul.cpanel li:hover {
 }
 
 /********************************** END => PRODUCT NOTIFICATION CSS ************************************************/
+
+/********************************** START => TOASTR CSS ************************************************/
+
+#toast-container > div {
+    -webkit-box-shadow: none !important;
+    -ms-box-shadow: none !important;
+    box-shadow: none !important;
+    -ms-opacity: 1 !important;
+    opacity: 1 !important;
+    width: 335px !important;
+}
+
+/********************************** END => TOASTR CSS ************************************************/

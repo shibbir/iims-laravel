@@ -23,6 +23,7 @@
         "underscore": null,
         "modernizr": "2.*",
         "html5shiv": null,
-        "toastr": null
+        "toastr": null,
+        "lodash": "~2.4.1"
     }
 }

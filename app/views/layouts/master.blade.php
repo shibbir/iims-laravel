@@ -40,6 +40,7 @@
     </div>
     {{ HTML::script('bower_components/jquery/dist/jquery.js') }}
     {{ HTML::script('bower_components/bootstrap/dist/js/bootstrap.js') }}
+    {{ HTML::script('bower_components/lodash/dist/lodash.js') }}
     {{ HTML::script('bower_components/angular/angular.js') }}
     {{ HTML::script('bower_components/toastr/toastr.js') }}
     {{ HTML::script('js/libs/jquery.cleditor.js') }}
@@ -48,7 +49,7 @@
     {{ HTML::script('js/application/app.js') }}
     {{ HTML::script('js/application/services/api.js') }}
     {{ HTML::script('js/application/services/notifier.js') }}
-    {{ HTML::script('js/application/controllers/dashboard.js') }}
-    {{ HTML::script('js/application/controllers/sales-invoice.js') }}
+    {{ HTML::script('js/application/controllers/dashboardCtrl.js') }}
+    {{ HTML::script('js/application/controllers/salesInvoiceCtrl.js') }}
 </body>
 </html>

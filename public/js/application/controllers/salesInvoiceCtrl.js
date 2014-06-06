@@ -6,9 +6,9 @@
             $scope.data = {};
             $scope.categories = [];
             $scope.cartItems = [];
-            apiService.get("/categories").then(function(result) {
-                if(result.data) {
-                    angular.forEach(result.data, function(value, key) {
+            apiService.get("/categories/").success(function(result) {
+                if(result) {
+                    angular.forEach(result, function(value, key) {
                         $scope.categories.push({
                             id: key,
                             title: value
@@ -17,6 +17,8 @@
                     $scope.data.category = $scope.categories[0];
                     $scope.getProducts();
                 }
+            }).error(function() {
+                notifierService.notifyError("Oops! Something happened.")
             });
         }();
         $scope.searchCustomer = function() {
@@ -31,10 +33,7 @@
                     $scope.customer = result.data[0];
                 }
                 else {
-                    notifierService.notify({
-                        responseType: "error",
-                        message: "Customer not found!"
-                    });
+                    notifierService.notifyError("Customer not found!");
                     $scope.customer = {};
                 }
                 $scope.customerFetchingInProgress = false;
@@ -76,5 +75,22 @@
                 $scope.cartItems.splice(index, 1);
             }
         };
+
+        $scope.getGrandTotal = function() {
+            var price = 0;
+            _.each($scope.cartItems, function(item) {
+                price += item.selectedQuantity * item.retail_price;
+            });
+            if($scope.data.serviceCharge) {
+                price += $scope.data.serviceCharge;
+            }
+            if($scope.data.totalDiscount) {
+                price -= $scope.data.totalDiscount;
+            }
+            if($scope.data.vat) {
+                price += $scope.data.vat;
+            }
+            return price;
+        };
     }]);
-})(angular.module("iimsApp"));
+})(_app);

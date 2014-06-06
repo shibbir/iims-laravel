@@ -54,7 +54,7 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost:3307',
+			'host'      => 'localhost:3306',
 			'database'  => 'iims_db',
 			'username'  => 'root',
 			'password'  => 'root',
