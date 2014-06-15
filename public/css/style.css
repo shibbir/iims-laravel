@@ -37,6 +37,7 @@ textarea {
 .red		{ color: #FF0000; }
 .bold 		{ font-weight: bold; }
 .inline		{ display: inline; }
+.textLeft 	{ text-align: left; }
 .textRight 	{ text-align: right; }
 
 .block {

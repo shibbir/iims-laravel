@@ -20,7 +20,7 @@
         "bootstrap": "3.*",
         "fontawesome": "4.*",
         "angular": null,
-        "underscore": null,
+        "angular-i18n": null,
         "modernizr": "2.*",
         "html5shiv": null,
         "toastr": null,

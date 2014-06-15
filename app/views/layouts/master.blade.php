@@ -42,6 +42,7 @@
     {{ HTML::script('bower_components/bootstrap/dist/js/bootstrap.js') }}
     {{ HTML::script('bower_components/lodash/dist/lodash.js') }}
     {{ HTML::script('bower_components/angular/angular.js') }}
+    {{ HTML::script('bower_components/angular-i18n/angular-locale_bn-bd.js') }}
     {{ HTML::script('bower_components/toastr/toastr.js') }}
     {{ HTML::script('js/libs/jquery.cleditor.js') }}
     {{ HTML::script('js/libs/highcharts.src.js') }}

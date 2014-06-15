@@ -172,14 +172,14 @@
                                     <tr ng-repeat="cartItem in cartItems">
                                         <td ng-bind="$index + 1"></td>
                                         <td ng-bind="cartItem.title"></td>
-                                        <td ng-bind="cartItem.retail_price | currency:'$'"></td>
+                                        <td ng-bind="cartItem.retail_price | currency"></td>
                                         <td class="col-xs-1">
                                             <select class="form-control input-sm"
                                                     ng-init="cartItem.selectedQuantity=1"
                                                     ng-model="cartItem.selectedQuantity"
                                                     ng-options="qty as qty for qty in cartItem.quantityArray"></select>
                                         </td>
-                                        <td class="text-center" ng-bind="cartItem.selectedQuantity * cartItem.retail_price | currency:'$'"></td>
+                                        <td class="text-center" ng-bind="cartItem.selectedQuantity * cartItem.retail_price | currency"></td>
                                         <td class="text-center">
                                             <button class="btn btn-danger btn-xs" ng-click="removeItemFromCart(cartItem, $index)">
                                                 <i class="fa fa-trash-o"></i>
@@ -201,30 +201,37 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-12 col-md-4 col-sm-offset-7">
+                <div class="col-xs-12 col-md-4 col-lg-offset-8 col-xs-offset-0">
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
-                            <label class="col-sm-5 control-label">Service Charge</label>
-                            <div class="col-sm-7">
-                                <input type="number" class="form-control" ng-model="data.serviceCharge" />
+                            <label class="col-sm-7 control-label">Total Amount ([[locale.NUMBER_FORMATS.CURRENCY_SYM]])</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control textRight" ng-disabled="true" ng-value="getTotalAmount() | currency" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-5 control-label">Total Discount</label>
-                            <div class="col-sm-7">
-                                <input type="number" class="form-control" ng-model="data.totalDiscount" />
+                            <label class="col-sm-7 control-label">Add Service Charge ([[locale.NUMBER_FORMATS.CURRENCY_SYM]])</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control textRight" ng-model="data.serviceCharge" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-5 control-label">VAT</label>
-                            <div class="col-sm-7">
-                                <input type="number" class="form-control" ng-model="data.vat" />
+                            <label class="col-sm-7 control-label">Add VAT ([[locale.NUMBER_FORMATS.CURRENCY_SYM]])</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control textRight" ng-model="data.vat" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-5 control-label">Grand Total</label>
-                            <div class="col-sm-7">
-                                <input type="number" class="form-control" ng-value="getGrandTotal()" />
+                            <label class="col-sm-7 control-label">Less Discount ([[locale.NUMBER_FORMATS.CURRENCY_SYM]])</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control textRight" ng-model="data.discount" />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-sm-7 control-label">Net Payable Amount ([[locale.NUMBER_FORMATS.CURRENCY_SYM]])</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control textRight" ng-disabled="true" ng-value="getGrandTotal() | currency" />
                             </div>
                         </div>
                     </form>

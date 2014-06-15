@@ -1,8 +1,9 @@
 "use strict";
 
 (function(app) {
-    app.controller("SalesInvoiceCtrl", ["$scope", "apiService", "notifierService", function($scope, apiService, notifierService) {
+    app.controller("SalesInvoiceCtrl", ["$scope", "apiService", "notifierService", "$locale", function($scope, apiService, notifierService, $locale) {
         $scope.init = function() {
+            $scope.locale = $locale;
             $scope.data = {};
             $scope.customers = [];
             $scope.categories = [];
@@ -19,7 +20,7 @@
                     $scope.getProductsByCategory();
                 }
             }).error(function() {
-                notifierService.notifyError("Oops! Something happened.")
+                notifierService.notifyError("Oops! Something happened.");
             });
         }();
 
@@ -47,7 +48,7 @@
                 }
                 $scope.customerFetchingInProgress = false;
             }).error(function() {
-                notifierService.notifyError("Oops! Something happened.")
+                notifierService.notifyError("Oops! Something happened.");
             });
         };
 
@@ -119,16 +120,24 @@
             }
         };
 
+        $scope.getTotalAmount = function() {
+            var totalAmount = 0;
+            _.each($scope.cartItems, function(item) {
+                totalAmount += item.selectedQuantity * item.retail_price;
+            });
+            return totalAmount;
+        };
+
         $scope.getGrandTotal = function() {
             var price = 0;
-            _.each($scope.cartItems, function(item) {
-                price += item.selectedQuantity * item.retail_price;
-            });
+
+            price += $scope.getTotalAmount();
+
             if($scope.data.serviceCharge) {
                 price += $scope.data.serviceCharge;
             }
-            if($scope.data.totalDiscount) {
-                price -= $scope.data.totalDiscount;
+            if($scope.data.discount) {
+                price -= $scope.data.discount;
             }
             if($scope.data.vat) {
                 price += $scope.data.vat;
@@ -143,7 +152,7 @@
                 }
             }
             else {
-                notifierService.notifyError("Please fix the errors!");
+                notifierService.notifyError("Please fix the errors first!");
             }
         };
     }]);
