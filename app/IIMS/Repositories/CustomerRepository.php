@@ -11,10 +11,25 @@ class CustomerRepository implements ICustomerRepository {
         return Customer::paginate(10, $fields);
     }
 
-    public function findByContact($contact, $fields = [])
+    public function findByQuery($query, $fields = [])
     {
-        if(empty($fields)) return Customer::whereContact($contact)->get($fields);
-        return Customer::whereContact($contact)->get();
+        if(empty($fields)) {
+            $result = Customer::whereContact($query)->get();
+        }
+        else {
+            $result = Customer::whereContact($query)->get($fields);
+
+            if(!count($result))
+            {
+                $result = Customer::whereFirstName($query)->get($fields);
+                if(!count($result))
+                {
+                    $result = Customer::whereLastName($query)->get($fields);
+                }
+            }
+        }
+
+        return $result;
     }
 
     public function findAllAsList($value, $key)

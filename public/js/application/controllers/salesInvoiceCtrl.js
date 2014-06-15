@@ -4,6 +4,7 @@
     app.controller("SalesInvoiceCtrl", ["$scope", "apiService", "notifierService", function($scope, apiService, notifierService) {
         $scope.init = function() {
             $scope.data = {};
+            $scope.customers = [];
             $scope.categories = [];
             $scope.cartItems = [];
             apiService.get("/categories/").success(function(result) {
@@ -15,30 +16,54 @@
                         });
                     });
                     $scope.data.category = $scope.categories[0];
-                    $scope.getProducts();
+                    $scope.getProductsByCategory();
                 }
             }).error(function() {
                 notifierService.notifyError("Oops! Something happened.")
             });
         }();
+
         $scope.searchCustomer = function() {
+            $scope.selectedCustomer = null;
             $scope.customerFetchingInProgress = true;
             var config = {
                 params: {
                     q: $scope.data.customerSearchKey
                 }
             };
-            apiService.get("/customers/", config).then(function(result) {
-                if(result.data.length) {
-                    $scope.customer = result.data[0];
+            apiService.get("/customers/", config).success(function(result) {
+                if(result.length) {
+                    $scope.customers = result;
+                    if(result.length === 1) {
+                        $scope.selectCustomer($scope.customers[0]);
+                    }
+                    else {
+                        notifierService.notifyInfo("Multiple customers found!");
+                    }
                 }
                 else {
                     notifierService.notifyError("Customer not found!");
-                    $scope.customer = {};
+                    $scope.customers = [];
                 }
                 $scope.customerFetchingInProgress = false;
+            }).error(function() {
+                notifierService.notifyError("Oops! Something happened.")
             });
         };
+
+        $scope.deSelectAllCustomers = function() {
+            _.each($scope.customers, function(customer) {
+                customer.isSelected = false;
+            });
+        };
+
+        $scope.selectCustomer = function(customer) {
+            $scope.deSelectAllCustomers();
+            customer.isSelected = true;
+            $scope.selectedCustomer = angular.copy(customer);
+            notifierService.notifySuccess("Customer is now added!");
+        };
+
         $scope.isAlreadyAddedToCart = function(item) {
             var productExistsInCart = false;
             for(var index = 0; index < $scope.cartItems.length; index++) {
@@ -49,17 +74,34 @@
             }
             return productExistsInCart;
         };
-        $scope.getProducts = function() {
+
+        $scope.getProductsByCategory = function(page) {
             $scope.productsFetchingInProgress = true;
             if($scope.data.category) {
-                apiService.get("/categories/" + $scope.data.category.id + "/products").then(function(result) {
-                    $scope.products = result.data.data;
+                if(page) {
+                    var config = {
+                        params: {
+                            page: page
+                        }
+                    };
+                }
+                apiService.get("/categories/" + $scope.data.category.id + "/products", config).success(function(result) {
+                    $scope.products = result.data;
                     $scope.productsFetchingInProgress = false;
+                    var tempResult = angular.copy(result);
+                    delete tempResult.data;
+                    $scope.paginationData = tempResult;
+                    $scope.paginationData.pages = [];
+
+                    for ( var i = 1; i <= $scope.paginationData.last_page; i++ ) {
+                        $scope.paginationData.pages.push(i);
+                    }
                 });
             } else {
                 $scope.products = [];
             }
         };
+
         $scope.addItemToCart = function(item) {
             if(!$scope.isAlreadyAddedToCart(item)) {
                 var quantityArray = [];
@@ -70,6 +112,7 @@
                 $scope.cartItems.push(item);
             }
         };
+
         $scope.removeItemFromCart = function(item, index) {
             if($scope.cartItems[index].id === item.id) {
                 $scope.cartItems.splice(index, 1);
@@ -91,6 +134,17 @@
                 price += $scope.data.vat;
             }
             return price;
+        };
+
+        $scope.createSalesInvoice = function() {
+            if($scope.selectedCustomer && $scope.cartItems.length) {
+                if(confirm("Are you sure?")) {
+                    window.location = "/sales";
+                }
+            }
+            else {
+                notifierService.notifyError("Please fix the errors!");
+            }
         };
     }]);
 })(_app);

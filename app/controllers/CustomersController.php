@@ -18,10 +18,12 @@ class CustomersController extends \BaseController {
 	public function index()
 	{
         $query = Request::get('q');
+        $fields = ['id', 'first_name', 'last_name', 'contact', 'address'];
+
         if($query) {
-            return $this->customerRepository->findByContact($query, ['id', 'first_name', 'last_name', 'contact']);
+            return $this->customerRepository->findByQuery($query, $fields);
         }
-        $customers = $this->customerRepository->findAll(['id', 'first_name', 'last_name', 'contact', 'address']);
+        $customers = $this->customerRepository->findAll($fields);
         return View::make('customers.index')->withCustomers($customers);
 	}
 
