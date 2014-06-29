@@ -10,8 +10,6 @@ class CreatePurchasesTable extends Migration {
 		Schema::create('purchases', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->string('invoice_id')->unique();
-            $table->integer('supplier_id');
 			$table->timestamps();
 		});
 	}

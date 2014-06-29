@@ -30,8 +30,6 @@ class SalesController extends \BaseController {
 	{
         $this->salesInvoiceForm->validate(Input::all());
         $this->salesRepository->create(Input::all());
-
-        return Redirect::route('sales.index')->with($this->getSuccessNotification('New sales invoice added successfully.'));
 	}
 
 	public function show($id)

@@ -26,17 +26,19 @@
     <![endif]-->
 </head>
 <body ng-app="iimsApp">
-    @include('shared.navigation')
-    <div class="container content">
-        @yield('breadcrumb')
-        @yield('content')
-    </div>
-    <div class="container">
-        <p class="pull-right">
-            Copyright &copy;
-            <?=(2013 == date('Y')) ? 2013 : "2013 &#8211; " . date('Y')?>
-            <a href="http://shibbir.net/" target="blank">Shibbir Ahmed</a>. All rights reserved.
-        </p>
+    <div ng-controller="BaseCtrl">
+        @include('shared.navigation')
+        <div class="container content">
+            @yield('breadcrumb')
+            @yield('content')
+        </div>
+        <div class="container">
+            <p class="pull-right">
+                Copyright &copy;
+                <?=(2013 == date('Y')) ? 2013 : "2013 &#8211; " . date('Y')?>
+                <a href="http://shibbir.net/" target="blank">Shibbir Ahmed</a>. All rights reserved.
+            </p>
+        </div>
     </div>
     {{ HTML::script('bower_components/jquery/dist/jquery.js') }}
     {{ HTML::script('bower_components/bootstrap/dist/js/bootstrap.js') }}
@@ -44,12 +46,15 @@
     {{ HTML::script('bower_components/angular/angular.js') }}
     {{ HTML::script('bower_components/angular-i18n/angular-locale_bn-bd.js') }}
     {{ HTML::script('bower_components/toastr/toastr.js') }}
+    {{ HTML::script('bower_components/lodash/dist/lodash.js') }}
     {{ HTML::script('js/libs/jquery.cleditor.js') }}
     {{ HTML::script('js/libs/highcharts.src.js') }}
     {{ HTML::script('js/libs/jquery.printPage.js') }}
     {{ HTML::script('js/application/app.js') }}
-    {{ HTML::script('js/application/services/api.js') }}
-    {{ HTML::script('js/application/services/notifier.js') }}
+    {{ HTML::script('js/application/services/apiService.js') }}
+    {{ HTML::script('js/application/services/notifierService.js') }}
+    {{ HTML::script('js/application/services/customerService.js') }}
+    {{ HTML::script('js/application/controllers/baseCtrl.js') }}
     {{ HTML::script('js/application/controllers/dashboardCtrl.js') }}
     {{ HTML::script('js/application/controllers/salesInvoiceCtrl.js') }}
 </body>

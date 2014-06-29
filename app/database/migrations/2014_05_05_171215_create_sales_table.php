@@ -10,7 +10,11 @@ class CreateSalesTable extends Migration {
 		Schema::create('sales', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->string('invoice_id')->unique();
+            $table->decimal('service_charge');
+            $table->decimal('discount');
+            $table->decimal('vat');
+            $table->decimal('total_amount');
+            $table->decimal('net_payable_amount');
             $table->integer('customer_id');
 			$table->timestamps();
 		});

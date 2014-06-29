@@ -2,8 +2,16 @@
 
 use IIMS\Models\Sales;
 use IIMS\Interfaces\ISalesRepository;
+use IIMS\Interfaces\ICustomerRepository;
 
 class SalesRepository implements ISalesRepository {
+
+    protected $customerRepository;
+
+    function __construct(ICustomerRepository $customerRepository)
+    {
+        $this->customerRepository = $customerRepository;
+    }
 
     public function findAll($fields = [])
     {
@@ -17,15 +25,25 @@ class SalesRepository implements ISalesRepository {
         return Sales::findOrFail($id, $fields);
     }
 
-    public function create($input)
+    public function create($inputs)
     {
-        Sales::create($input);
+        $customerId = $inputs['customer_id'];
+        $products = $inputs['products'];
+
+        if($customerId && $products)
+        {
+            $customer = $this->customerRepository->find($customerId, ['id']);
+            if($customer)
+            {
+                Sales::create($inputs);
+            }
+        }
     }
 
-    public function update($id, $input)
+    public function update($id, $inputs)
     {
         $sales_invoice = Sales::findOrFail($id);
-        $sales_invoice->fill($input);
+        $sales_invoice->fill($inputs);
 
         $sales_invoice->save();
     }

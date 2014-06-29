@@ -15,6 +15,15 @@ class CustomerRepository implements ICustomerRepository {
     {
         if(empty($fields)) {
             $result = Customer::whereContact($query)->get();
+
+            if(!count($result))
+            {
+                $result = Customer::whereFirstName($query)->get();
+                if(!count($result))
+                {
+                    $result = Customer::whereLastName($query)->get();
+                }
+            }
         }
         else {
             $result = Customer::whereContact($query)->get($fields);

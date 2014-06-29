@@ -5,6 +5,7 @@
 @stop
 
 @section('content')
+
     <div ng-controller="SalesInvoiceCtrl">
         <h2>Sale Invoice Create Form</h2>
         <hr />
@@ -103,7 +104,7 @@
                                     <td>[[ product.quantity ]] in 3 variants</td>
                                     <td ng-bind="product.updated_at"></td>
                                     <td>
-                                        <button class="btn btn-success btn-xs" ng-click="addItemToCart(product)" ng-disabled="isAlreadyAddedToCart(product)">
+                                        <button type="button" class="btn btn-success btn-xs" ng-click="addItemToCart(product)" ng-disabled="isProductAlreadyAddedToCart(product)">
                                             <i class="fa fa-plus"></i>
                                             Add
                                         </button>
@@ -181,7 +182,7 @@
                                         </td>
                                         <td class="text-center" ng-bind="cartItem.selectedQuantity * cartItem.retail_price | currency"></td>
                                         <td class="text-center">
-                                            <button class="btn btn-danger btn-xs" ng-click="removeItemFromCart(cartItem, $index)">
+                                            <button type="button" class="btn btn-danger btn-xs" ng-click="removeItemFromCart(cartItem, $index)">
                                                 <i class="fa fa-trash-o"></i>
                                                 Discard
                                             </button>
@@ -202,36 +203,39 @@
 
             <div class="row">
                 <div class="col-xs-12 col-md-4 col-lg-offset-8 col-xs-offset-0">
-                    <form class="form-horizontal" role="form">
+                    <form class="form-horizontal" role="form" name="SaleInvoicePriceForm">
                         <div class="form-group">
                             <label class="col-sm-7 control-label">Total Amount ([[locale.NUMBER_FORMATS.CURRENCY_SYM]])</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control textRight" ng-disabled="true" ng-value="getTotalAmount() | currency" />
+                                <input type="text" name="total_amount" class="form-control textRight" ng-disabled="true" ng-value="getTotalAmount()" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-7 control-label">Add Service Charge ([[locale.NUMBER_FORMATS.CURRENCY_SYM]])</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control textRight" ng-model="data.serviceCharge" />
+                                <input type="number" name="service_charge" class="form-control textRight" ng-model="data.serviceCharge" ng-init="data.serviceCharge = 0" />
+                                <span class="error" ng-if="SaleInvoicePriceForm.service_charge.$error.number">Not a valid number!</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-7 control-label">Add VAT ([[locale.NUMBER_FORMATS.CURRENCY_SYM]])</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control textRight" ng-model="data.vat" />
+                                <input type="number" name="vat" class="form-control textRight" ng-model="data.vat" ng-init="data.vat = 0" />
+                                <span class="error" ng-if="SaleInvoicePriceForm.vat.$error.number">Not a valid number!</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-7 control-label">Less Discount ([[locale.NUMBER_FORMATS.CURRENCY_SYM]])</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control textRight" ng-model="data.discount" />
+                                <input type="number" name="discount" class="form-control textRight" ng-model="data.discount" ng-init="data.discount = 0" />
+                                <span class="error" ng-if="SaleInvoicePriceForm.discount.$error.number">Not a valid number!</span>
                             </div>
                         </div>
                         <hr />
                         <div class="form-group">
                             <label class="col-sm-7 control-label">Net Payable Amount ([[locale.NUMBER_FORMATS.CURRENCY_SYM]])</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control textRight" ng-disabled="true" ng-value="getGrandTotal() | currency" />
+                                <input type="text" name="net_payable_amount" class="form-control textRight" ng-disabled="true" ng-value="getGrandTotal()" />
                             </div>
                         </div>
                     </form>
@@ -243,7 +247,7 @@
         <hr />
 
         <div class="pull-right">
-            <button class="btn btn-primary" ng-click="createSalesInvoice()">
+            <button type="button" class="btn btn-primary" ng-click="createSalesInvoice()">
                 <i class="fa fa-plus"></i>
                 Create Invoice
             </button>
