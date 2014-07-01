@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration {
             $table->string('description');
             $table->integer('quantity');
             $table->string('warranty');
-            $table->decimal('buy_price');
+            $table->decimal('buying_price');
             $table->decimal('retail_price');
 			$table->timestamps();
 		});

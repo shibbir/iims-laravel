@@ -27,7 +27,7 @@
             <tbody>
                 @foreach($sales_invoices as $invoice)
                     <tr>
-                        <td>{{ $invoice->invoice_id }}</td>
+                        <td>{{ $invoice->id }}</td>
                         <td>{{ $invoice->created_at }}</td>
                         <td>{{ $invoice->updated_at }}</td>
                         <td>{{ $invoice->customer_id }}</td>

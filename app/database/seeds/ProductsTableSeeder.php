@@ -20,7 +20,7 @@ class ProductsTableSeeder extends Seeder {
                 'description'  => $faker->sentence(),
                 'quantity'     => $faker->randomDigitNotNull,
                 'warranty'     => $faker->word,
-                'buy_price'    => $faker->randomDigitNotNull,
+                'buying_price' => $faker->randomDigitNotNull,
                 'retail_price' => $faker->randomDigitNotNull
             ]);
         }

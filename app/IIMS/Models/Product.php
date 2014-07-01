@@ -4,7 +4,7 @@ class Product extends \Eloquent {
 
     protected $table = 'products';
 
-    protected $fillable = ['category_id', 'supplier_id', 'title', 'sku', 'description', 'quantity', 'warranty', 'buy_price', 'retail_price'];
+    protected $fillable = ['category_id', 'supplier_id', 'title', 'sku', 'description', 'quantity', 'warranty', 'buying_price', 'retail_price'];
 
     public function category()
     {

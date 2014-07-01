@@ -5,21 +5,17 @@
         "$scope", "$locale", "$window", "apiService", "notifierService", "customerService", function($scope, $locale, $window, apiService, notifierService, customerService) {
             $scope.init = function() {
                 $scope.locale = $locale;
-                $scope.data = {};
-                $scope.customers = [];
-                $scope.categories = [];
-                $scope.cartItems = [];
 
                 apiService.get("/categories/").success(function(result) {
                     if (result) {
+                        $scope.categories = $scope.categories || [];
                         angular.forEach(result, function(value, key) {
                             $scope.categories.push({
                                 id: key,
                                 title: value
                             });
                         });
-                        $scope.data.category = $scope.categories[0];
-                        $scope.getProductsByCategory();
+                        $scope.initSalesInvoice();
                     }
                 }).error(function() {
                     notifierService.notifyError("Oops! Something happened.");
@@ -159,18 +155,36 @@
                 return false;
             };
 
+            $scope.initSalesInvoice = function() {
+                $scope.data = {};
+
+                $scope.data.category = $scope.categories[0];
+                $scope.getProductsByCategory();
+
+                $scope.customers = [];
+                $scope.cartItems = [];
+            };
+
             $scope.createSalesInvoice = function() {
                 if ($scope.isValidSalesInvoiceForm()) {
                     if (confirm("Are you sure?")) {
+                        var products = [];
+                        _.each($scope.cartItems, function(cartItem) {
+                            products.push({
+                                id: cartItem.id,
+                                quantity: cartItem.selectedQuantity
+                            });
+                        });
                         var data = {
                             customer_id: $scope.selectedCustomer.id,
-                            products: $scope.cartItems,
+                            products: products,
                             vat: $scope.data.vat,
                             discount: $scope.data.discount,
-                            serviceCharge: $scope.data.serviceCharge
+                            service_charge: $scope.data.serviceCharge
                         };
                         apiService.post("/sales/", data).success(function() {
-                            //$window.location = "/";
+                            notifierService.notifySuccess("Sales invoice created successfully.");
+                            $scope.initSalesInvoice();
                         }).error(function() {
                             notifierService.notifyError("Oops! Something happened.");
                         });
