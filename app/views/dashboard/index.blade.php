@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <div class="row" ng-controller="dashboardCtrl">
+    <div class="row" data-ng-controller="dashboardCtrl">
         <div class="col-xs-12 col-md-6">
             <div class="widget">
                 <div class="widget-header"><h4>Quick Dashboard</h4></div>
@@ -29,7 +29,7 @@
                         <div class="col-xs-6 col-md-6">
                             <h4>Organization Information</h4>
                         </div>
-                        <div ng-if="organization">
+                        <div data-ng-if="organization">
                             <div class="col-xs-6 col-md-6 textRight">
                                 <a class="btn btn-primary organization-edit-modal" data-target="#ModalOrganizationEdit" data-toggle="modal">Edit</a>
                             </div>
@@ -39,25 +39,25 @@
                 <div class="widget-body">
                     @include('organization.organization-edit-modal')
 
-                    <div ng-if="organization">
-                        <h4 ng-bind="organization.title"></h4>
-                        <small ng-bind="organization.sub_title"></small>
-                        <address ng-bind="organization.address"></address>
+                    <div data-ng-if="organization">
+                        <h4 data-ng-bind="organization.title"></h4>
+                        <small data-ng-bind="organization.sub_title"></small>
+                        <address data-ng-bind="organization.address"></address>
                         <p>
                             <span class="label label-primary">Mobile</span>
-                            <span ng-bind="organization.mobile"></span>
+                            <span data-ng-bind="organization.mobile"></span>
                         </p>
                         <p>
                             <span class="label label-primary">Phone</span>
-                            <span ng-bind="organization.phone"></span>
+                            <span data-ng-bind="organization.phone"></span>
                         </p>
                         <p>
                             <span class="label label-info">Email</span>
-                            <span ng-bind="organization.email"></span>
+                            <span data-ng-bind="organization.email"></span>
                         </p>
                         <p>
                             <span class="label label-info">Website</span>
-                            <a target="_blank" href="[[ organization.website ]]" ng-bind="organization.website"></a>
+                            <a target="_blank" href="[[ organization.website ]]" data-ng-bind="organization.website"></a>
                         </p>
                     </div>
                 </div>

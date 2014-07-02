@@ -2,7 +2,7 @@
 
 (function(app) {
     app.controller("SalesInvoiceCtrl", [
-        "$scope", "$locale", "$window", "apiService", "notifierService", "customerService", function($scope, $locale, $window, apiService, notifierService, customerService) {
+        "$scope", "$locale", "$window", "apiService", "notifierService", "customerService", "productService", function($scope, $locale, $window, apiService, notifierService, customerService, productService) {
             $scope.init = function() {
                 $scope.locale = $locale;
 
@@ -139,17 +139,17 @@
 
             $scope.isValidSalesInvoiceForm = function() {
 
-                if(!$scope.data.vat) {
+                if (!$scope.data.vat) {
                     $scope.data.vat = 0;
                 }
-                if(!$scope.data.discount) {
+                if (!$scope.data.discount) {
                     $scope.data.discount = 0;
                 }
-                if(!$scope.data.serviceCharge) {
+                if (!$scope.data.serviceCharge) {
                     $scope.data.serviceCharge = 0;
                 }
 
-                if($scope.selectedCustomer && $scope.cartItems.length) {
+                if ($scope.selectedCustomer && $scope.cartItems.length) {
                     return true;
                 }
                 return false;
@@ -163,6 +163,84 @@
 
                 $scope.customers = [];
                 $scope.cartItems = [];
+            };
+
+            $scope.clearProductSerial = function(data) {
+
+                data.serial = "";
+                data.isValid = false;
+                data.isChecked = false;
+            };
+
+            $scope.verifyProductSerial = function(productId, data) {
+                data.isChecked = true;
+                var serialAlreadyAdded = false;
+
+                for(var index = 0; index < $scope.serialManager.serialNumbers.length; index++) {
+                    var t = $scope.serialManager.serialNumbers[index];
+                    if(t.isValid && t.serial === data.serial) {
+                        serialAlreadyAdded = true;
+                        break;
+                    }
+                }
+
+                if(!serialAlreadyAdded) {
+                    $scope.serialNumberCheckingInProgress = true;
+                    productService.verifyProductSerial(productId, data.serial).success(function() {
+                        $scope.serialNumberCheckingInProgress = false;
+                        data.isValid = true;
+                    }).error(function() {
+                        $scope.serialNumberCheckingInProgress = false;
+                        data.isValid = false;
+                    });
+                }
+            };
+
+            $scope.resetSerialForAnItem = function(cartItem) {
+                delete cartItem.serialNumbers;
+            };
+
+            $scope.isSerialNumberVerifiedForAllItems = function() {
+                var isSerialNumberVerifiedForAllItems = true;
+
+                if($scope.serialManager) {
+                    for(var index = 0; index < $scope.serialManager.serialNumbers.length; index++) {
+                        var t = $scope.serialManager.serialNumbers[index];
+                        if(!t.serial || !t.isValid) {
+                            isSerialNumberVerifiedForAllItems = false;
+                            break;
+                        }
+                    }
+                }
+
+                return isSerialNumberVerifiedForAllItems;
+            };
+
+            $scope.saveProductSerial = function() {
+                $scope.resetSerialForAnItem($scope.selectedProduct);
+
+                if($scope.serialManager) {
+                    if($scope.isSerialNumberVerifiedForAllItems()) {
+                        $scope.selectedProduct.serialNumbers = angular.copy($scope.serialManager.serialNumbers);
+                        $("#ModalSerialManager").modal("hide");
+                        notifierService.notifySuccess("Serial number added for product id: " + $scope.selectedProduct.id);
+                    }
+                }
+            };
+
+            $scope.initSerialManager = function(cartItem) {
+
+                $scope.selectedProduct = cartItem;
+
+                var serialNumbers = [];
+                for (var index = 0; index < $scope.selectedProduct.selectedQuantity; index++) {
+                    serialNumbers.push({
+                        isValid: false
+                    });
+                }
+                $scope.serialManager = {
+                    serialNumbers: $scope.selectedProduct.serialNumbers || serialNumbers
+                };
             };
 
             $scope.createSalesInvoice = function() {
@@ -193,6 +271,5 @@
                     notifierService.notifyError("Please fix the errors first!");
                 }
             };
-        }
-    ]);
+        }]);
 })(_app);

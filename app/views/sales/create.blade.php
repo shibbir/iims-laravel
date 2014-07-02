@@ -7,6 +7,7 @@
 @section('content')
 
     <div data-ng-controller="SalesInvoiceCtrl">
+        @include('sales.serial-manager-modal')
         <h2>Sale Invoice Create Form</h2>
         <hr />
 
@@ -184,10 +185,15 @@
                                             <select class="form-control input-sm"
                                                     data-ng-init="cartItem.selectedQuantity=1"
                                                     data-ng-model="cartItem.selectedQuantity"
+                                                    data-ng-change="resetSerialForAnItem(cartItem)"
                                                     data-ng-options="qty as qty for qty in cartItem.quantityArray"></select>
                                         </td>
                                         <td class="text-center" data-ng-bind="cartItem.selectedQuantity * cartItem.retail_price"></td>
                                         <td class="text-center">
+                                            <button type="button" class="btn btn-primary btn-xs" data-target="#ModalSerialManager" data-toggle="modal" data-ng-click="initSerialManager(cartItem)">
+                                                <i class="fa fa-ticket"></i>
+                                                Manage Serial
+                                            </button>
                                             <button type="button" class="btn btn-danger btn-xs" data-ng-click="removeItemFromCart(cartItem, $index)">
                                                 <i class="fa fa-trash-o"></i>
                                                 Discard

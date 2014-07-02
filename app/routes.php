@@ -31,6 +31,7 @@ Route::get('categories/{categories}/delete', 'CategoryController@delete');
 # Product
 Route::get('inventory', ['as' => 'inventory', 'uses' => 'ProductsController@inventory']);
 Route::get('products/create', 'ProductsController@create');
+Route::get('products/{product}/serial/{serial}', 'ProductMetadataController@verify');
 Route::resource('categories.products', 'ProductsController');
 
 # Supplier

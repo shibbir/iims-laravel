@@ -52,6 +52,7 @@
     {{ HTML::script('js/libs/jquery.printPage.js') }}
     {{ HTML::script('js/application/app.js') }}
     {{ HTML::script('js/application/services/apiService.js') }}
+    {{ HTML::script('js/application/services/productService.js') }}
     {{ HTML::script('js/application/services/notifierService.js') }}
     {{ HTML::script('js/application/services/customerService.js') }}
     {{ HTML::script('js/application/controllers/baseCtrl.js') }}
