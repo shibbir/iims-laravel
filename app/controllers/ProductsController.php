@@ -36,7 +36,7 @@ class ProductsController extends \BaseController {
 	public function index($category_id)
 	{
         if(Request::ajax()) {
-            return $this->productRepository->findAllByCategory($category_id, ['id', 'title', 'retail_price', 'quantity', 'updated_at']);
+            return $this->productRepository->findAllByCategory($category_id, ['id', 'title', 'category_id', 'retail_price', 'quantity', 'updated_at']);
         }
         $supplier = $this->supplierRepository->find(1, ['id', 'company_name']);
         $category = $this->categoryRepository->find($category_id, ['id', 'title']);
