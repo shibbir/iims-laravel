@@ -4,6 +4,7 @@ use IIMS\Forms\Product;
 use IIMS\Interfaces\IProductRepository;
 use IIMS\Interfaces\ICategoryRepository;
 use IIMS\Interfaces\ISupplierRepository;
+use IIMS\Interfaces\IProductMetadataRepository;
 
 class ProductsController extends \BaseController {
 
@@ -11,14 +12,20 @@ class ProductsController extends \BaseController {
     protected $productRepository;
     protected $categoryRepository;
     protected $supplierRepository;
+    protected $productMetadataRepository;
 
-    function __construct(IProductRepository $productRepository, ICategoryRepository $categoryRepository, ISupplierRepository $supplierRepository, Product $productForm)
+    function __construct(IProductRepository $productRepository,
+                         ICategoryRepository $categoryRepository,
+                         ISupplierRepository $supplierRepository,
+                         IProductMetadataRepository $productMetadataRepository,
+                         Product $productForm)
     {
         $this->beforeFilter('auth');
         $this->productForm = $productForm;
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->supplierRepository = $supplierRepository;
+        $this->productMetadataRepository = $productMetadataRepository;
     }
 
     public function inventory()
@@ -58,8 +65,9 @@ class ProductsController extends \BaseController {
 	public function show($category_id, $product_id)
 	{
         $product = $this->productRepository->findWithCategoryByCategory($category_id, $product_id);
+        $product_metadata_collection = $this->productMetadataRepository->findProductMetadataByProductId($product_id);
 
-        return View::make('products.show')->withProduct($product);
+        return View::make('products.show', compact('product', 'product_metadata_collection'));
 	}
 
 	public function edit($category_id, $product_id)

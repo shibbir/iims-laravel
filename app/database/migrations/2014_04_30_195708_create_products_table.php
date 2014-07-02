@@ -13,7 +13,6 @@ class CreateProductsTable extends Migration {
             $table->integer('category_id');
             $table->integer('supplier_id');
             $table->string('title')->unique();
-            $table->string('sku');
             $table->string('description');
             $table->integer('quantity');
             $table->string('warranty');

@@ -163,9 +163,9 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Title</th>
-                                        <th>Unit Price</th>
+                                        <th>Unit Price ([[locale.NUMBER_FORMATS.CURRENCY_SYM]])</th>
                                         <th>Quantity</th>
-                                        <th class="text-center">Total Price</th>
+                                        <th class="text-center">Total Price ([[locale.NUMBER_FORMATS.CURRENCY_SYM]])</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -173,14 +173,14 @@
                                     <tr ng-repeat="cartItem in cartItems">
                                         <td ng-bind="$index + 1"></td>
                                         <td ng-bind="cartItem.title"></td>
-                                        <td ng-bind="cartItem.retail_price | currency"></td>
+                                        <td ng-bind="cartItem.retail_price"></td>
                                         <td class="col-xs-1">
                                             <select class="form-control input-sm"
                                                     ng-init="cartItem.selectedQuantity=1"
                                                     ng-model="cartItem.selectedQuantity"
                                                     ng-options="qty as qty for qty in cartItem.quantityArray"></select>
                                         </td>
-                                        <td class="text-center" ng-bind="cartItem.selectedQuantity * cartItem.retail_price | currency"></td>
+                                        <td class="text-center" ng-bind="cartItem.selectedQuantity * cartItem.retail_price"></td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-danger btn-xs" ng-click="removeItemFromCart(cartItem, $index)">
                                                 <i class="fa fa-trash-o"></i>
