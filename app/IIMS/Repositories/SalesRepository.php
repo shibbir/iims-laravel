@@ -38,8 +38,8 @@ class SalesRepository implements ISalesRepository {
 
         if($productsListViewModel)
         {
-            $input['total_amount'] = $input['vat'] + $input['service_charge'];
-            $input['net_payable_amount'] = $input['total_amount'] - $input['discount'];
+            $input['total_amount'] = 0;
+            $input['net_payable_amount'] = ($input['vat'] + $input['service_charge']) - $input['discount'];
 
             foreach($productsListViewModel as $product)
             {
@@ -53,6 +53,8 @@ class SalesRepository implements ISalesRepository {
                     $item->quantity -= $product['quantity'];
                 }
             }
+
+            $input['net_payable_amount'] += $input['total_amount'];
 
             $salesId = Sales::create($input)->id;
 
@@ -76,7 +78,7 @@ class SalesRepository implements ISalesRepository {
                         $this->productRepository->update($product->id, (array) $product);
 
                         $productMetadata->isAvailable = 0;
-                        $this->productMetadataRepository->updateBySerial($productSerial, (array) $productMetadata);
+                        $this->productMetadataRepository->update($productMetadata->id, (array) $productMetadata);
                     }
                 }
             }

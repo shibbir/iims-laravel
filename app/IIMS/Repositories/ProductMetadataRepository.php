@@ -15,9 +15,9 @@ class ProductMetadataRepository implements IProductMetadataRepository {
         return ProductMetadata::whereSerial($serial)->first();
     }
 
-    public function updateBySerial($serial, $model)
+    public function update($id, $model)
     {
-        $productMetadata = ProductMetadata::whereSerial($serial)->first();
+        $productMetadata = ProductMetadata::findOrFail($id);
         $productMetadata->fill($model);
 
         $productMetadata->save();
