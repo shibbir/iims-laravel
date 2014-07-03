@@ -139,6 +139,8 @@
 
             $scope.isValidSalesInvoiceForm = function() {
 
+                var isValidSalesInvoiceForm = true;
+
                 if (!$scope.data.vat) {
                     $scope.data.vat = 0;
                 }
@@ -149,10 +151,22 @@
                     $scope.data.serviceCharge = 0;
                 }
 
-                if ($scope.selectedCustomer && $scope.cartItems.length) {
-                    return true;
+                if (!$scope.selectedCustomer || !$scope.cartItems.length) {
+                    isValidSalesInvoiceForm = false;
                 }
-                return false;
+
+                if(isValidSalesInvoiceForm) {
+                    for(var index = 0; index < $scope.cartItems.length; index++) {
+                        var t = $scope.cartItems[index];
+
+                        if(!$scope.isSerialNumberVerifiedForItem(t)) {
+                            isValidSalesInvoiceForm = false;
+                            break;
+                        }
+                    }
+                }
+
+                return isValidSalesInvoiceForm;
             };
 
             $scope.initSalesInvoice = function() {
@@ -200,7 +214,24 @@
                 delete cartItem.serialNumbers;
             };
 
-            $scope.isSerialNumberVerifiedForAllItems = function() {
+            $scope.isSerialNumberVerifiedForItem = function(item) {
+                var isSerialNumberVerifiedForItem = true;
+
+                if(item.serialNumbers) {
+                    for(var index = 0; index < item.serialNumbers.length; index++) {
+                        if(!item.serialNumbers[index].serial || !item.serialNumbers[index].isValid) {
+                            isSerialNumberVerifiedForItem = false;
+                            break;
+                        }
+                    }
+                } else {
+                    isSerialNumberVerifiedForItem = false;
+                }
+
+                return isSerialNumberVerifiedForItem;
+            };
+
+            $scope.isSerialNumberVerifiedForAllItemsInSerialManager = function() {
                 var isSerialNumberVerifiedForAllItems = true;
 
                 if($scope.serialManager) {
@@ -216,11 +247,11 @@
                 return isSerialNumberVerifiedForAllItems;
             };
 
-            $scope.saveProductSerial = function() {
+            $scope.persistSerialManagerInSelectedProduct = function() {
                 $scope.resetSerialForAnItem($scope.selectedProduct);
 
                 if($scope.serialManager) {
-                    if($scope.isSerialNumberVerifiedForAllItems()) {
+                    if($scope.isSerialNumberVerifiedForAllItemsInSerialManager()) {
                         $scope.selectedProduct.serialNumbers = angular.copy($scope.serialManager.serialNumbers);
                         $("#ModalSerialManager").modal("hide");
                         notifierService.notifySuccess("Serial number added for product id: " + $scope.selectedProduct.id);
@@ -248,9 +279,14 @@
                     if (confirm("Are you sure?")) {
                         var products = [];
                         _.each($scope.cartItems, function(cartItem) {
+                            var serialNumbers = [];
+                            _.each(cartItem.serialNumbers, function(item) {
+                                serialNumbers.push(item.serial);
+                            });
                             products.push({
                                 id: cartItem.id,
-                                quantity: cartItem.selectedQuantity
+                                quantity: cartItem.selectedQuantity,
+                                serial_numbers: serialNumbers
                             });
                         });
                         var data = {

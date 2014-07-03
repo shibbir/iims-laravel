@@ -2,17 +2,20 @@
 
 use IIMS\Forms\SalesInvoice;
 use IIMS\Interfaces\ISalesRepository;
+use IIMS\Interfaces\ICustomerRepository;
 
 class SalesController extends \BaseController {
 
     protected $salesInvoiceForm;
     protected $salesRepository;
+    protected $customerRepository;
 
-    function __construct(ISalesRepository $salesRepository, SalesInvoice $salesInvoiceForm)
+    function __construct(ICustomerRepository $customerRepository, ISalesRepository $salesRepository, SalesInvoice $salesInvoiceForm)
     {
         $this->beforeFilter('auth');
         $this->salesInvoiceForm = $salesInvoiceForm;
         $this->salesRepository = $salesRepository;
+        $this->customerRepository = $customerRepository;
     }
 
 	public function index()
@@ -28,8 +31,12 @@ class SalesController extends \BaseController {
 
 	public function store()
 	{
-        $this->salesInvoiceForm->validate(Input::all());
-        $this->salesRepository->create(Input::all());
+        //$this->salesInvoiceForm->validate(Input::all());
+
+        if(Input::has('customer_id') && $this->customerRepository->find(Input::get('customer_id'), ['id']))
+        {
+            $this->salesRepository->create(Input::all());
+        }
 	}
 
 	public function show($id)

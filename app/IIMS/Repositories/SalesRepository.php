@@ -2,21 +2,21 @@
 
 use IIMS\Models\Sales;
 use IIMS\Interfaces\ISalesRepository;
-use IIMS\Interfaces\ICustomerRepository;
 use IIMS\Interfaces\IProductRepository;
 use IIMS\Interfaces\ISalesDetailsRepository;
+use IIMS\Interfaces\IProductMetadataRepository;
 
 class SalesRepository implements ISalesRepository {
 
-    protected $customerRepository;
     protected $productRepository;
     protected $salesDetailsRepository;
+    protected $productMetadataRepository;
 
-    function __construct(ICustomerRepository $customerRepository, IProductRepository $productRepository, ISalesDetailsRepository $salesDetailsRepository)
+    function __construct(IProductRepository $productRepository, IProductMetadataRepository $productMetadataRepository, ISalesDetailsRepository $salesDetailsRepository)
     {
-        $this->customerRepository = $customerRepository;
         $this->productRepository = $productRepository;
         $this->salesDetailsRepository = $salesDetailsRepository;
+        $this->productMetadataRepository = $productMetadataRepository;
     }
 
     public function findAll($fields = [])
@@ -33,51 +33,50 @@ class SalesRepository implements ISalesRepository {
 
     public function create($input)
     {
-        $customerId = $input['customer_id'];
         $productsListViewModel = $input['products'];
         $productsForSale = [];
 
-        if($customerId && $productsListViewModel)
+        if($productsListViewModel)
         {
             $input['total_amount'] = $input['vat'] + $input['service_charge'];
             $input['net_payable_amount'] = $input['total_amount'] - $input['discount'];
 
-            $customer = $this->customerRepository->find($customerId, ['id']);
-
-            if($customer)
+            foreach($productsListViewModel as $product)
             {
-                foreach($productsListViewModel as $product)
-                {
-                    $item = $this->productRepository->find($product['id'], ['id', 'retail_price', 'warranty', 'quantity']);
+                $item = $this->productRepository->find($product['id'], ['id', 'retail_price', 'warranty', 'quantity']);
 
-                    if($item && $item->quantity)
-                    {
-                        $productsForSale[] = $item;
-                        $input['total_amount'] += $item->retail_price * $product['quantity'];
-                        $item->quantity -= $product['quantity'];
-                    }
+                if($item && ($item->quantity >= $product['quantity']))
+                {
+                    $item->serial_numbers = $product['serial_numbers'];
+                    $productsForSale[] = $item;
+                    $input['total_amount'] += $item->retail_price * $product['quantity'];
+                    $item->quantity -= $product['quantity'];
                 }
+            }
 
-                $salesId = Sales::create($input)->id;
+            $salesId = Sales::create($input)->id;
 
-                if($salesId)
+            foreach($productsForSale as $product)
+            {
+                foreach($product->serial_numbers as $productSerial)
                 {
-                    foreach($productsForSale as $product)
-                    {
-                        $productId = $product->id;
+                    $productMetadata = $this->productMetadataRepository->findProductMetadataBySerial($productSerial);
 
+                    if($productMetadata->isAvailable)
+                    {
                         $model = array (
                             'invoice_id' 	=>  $salesId,
-                            'product_id' 	=>  $productId,
+                            'product_id' 	=>  $product->id,
                             'warranty' 		=> 	$product->warranty,
                             'selling_price' => 	$product->retail_price,
-                            'serial'        =>  'N/A'
+                            'serial'        =>  $productMetadata->serial
                         );
                         $this->salesDetailsRepository->create($model);
 
-                        $product = (array) $product;
+                        $this->productRepository->update($product->id, (array) $product);
 
-                        $this->productRepository->update($productId, $product);
+                        $productMetadata->isAvailable = 0;
+                        $this->productMetadataRepository->updateBySerial($productSerial, (array) $productMetadata);
                     }
                 }
             }

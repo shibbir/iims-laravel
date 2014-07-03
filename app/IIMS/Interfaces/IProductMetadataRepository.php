@@ -2,4 +2,6 @@
 
 interface IProductMetadataRepository {
     public function findProductMetadataByProductId($product_id);
+    public function findProductMetadataBySerial($serial);
+    public function updateBySerial($serial, $model);
 }

@@ -51,7 +51,9 @@
                 <div class="pull-left" data-ng-if="serialNumberCheckingInProgress">
                     <i class="fa fa-circle-o-notch fa-spin fa-lg green"></i> Checking...
                 </div>
-                <button type="button" class="btn btn-success" data-ng-disabled="!isSerialNumberVerifiedForAllItems()" data-ng-click="saveProductSerial()">
+                <button type="button" class="btn btn-success"
+                        data-ng-disabled="!isSerialNumberVerifiedForAllItemsInSerialManager()"
+                        data-ng-click="persistSerialManagerInSelectedProduct()">
                     <i class="fa fa-pencil"></i> Save Changes
                 </button>
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
