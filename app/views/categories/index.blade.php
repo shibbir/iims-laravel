@@ -18,7 +18,7 @@
             <thead>
                 <tr>
                     <th style="width: 20%;">Title</th>
-                    <th style="width: 50;">Description</th>
+                    <th style="width: 50%;">Description</th>
                     <th>Action</th>
                 </tr>
             </thead>

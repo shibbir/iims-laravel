@@ -126,7 +126,7 @@
                                     <span>«</span>
                                 </li>
                                 <li data-ng-if="paginationData.current_page !== 1">
-                                    <a data-ng-click="getProductsByCategory(1)">«</a>
+                                    <a data-ng-click="getProductsByCategory(paginationData.current_page - 1)">«</a>
                                 </li>
                                 <li
                                     data-ng-repeat="page in paginationData.pages"
@@ -139,7 +139,7 @@
                                     <span>»</span>
                                 </li>
                                 <li data-ng-if="paginationData.current_page !== paginationData.last_page">
-                                    <a data-ng-click="getProductsByCategory(paginationData.last_page)">»</a>
+                                    <a data-ng-click="getProductsByCategory(paginationData.current_page + 1)">»</a>
                                 </li>
                             </ul>
                         </div>
@@ -209,7 +209,7 @@
                                 Nothing is added to the cart yet!
                             </div>
                         </div>
-                    <fieldset>
+                    </fieldset>
                 </div>
             </div>
 
