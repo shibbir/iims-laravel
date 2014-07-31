@@ -1,21 +1,23 @@
 <?php
 
-use IIMS\Forms\SalesInvoice;
 use IIMS\Interfaces\ISalesRepository;
+use IIMS\Interfaces\ISalesInvoiceProductDetailsRepository;
 use IIMS\Interfaces\ICustomerRepository;
 
 class SalesController extends \BaseController {
 
-    protected $salesInvoiceForm;
     protected $salesRepository;
+    protected $salesInvoiceProductDetailsRepository;
     protected $customerRepository;
 
-    function __construct(ICustomerRepository $customerRepository, ISalesRepository $salesRepository, SalesInvoice $salesInvoiceForm)
+    function __construct(ICustomerRepository $customerRepository,
+                         ISalesRepository $salesRepository,
+                         ISalesInvoiceProductDetailsRepository $salesInvoiceProductDetailsRepository)
     {
         $this->beforeFilter('auth');
-        $this->salesInvoiceForm = $salesInvoiceForm;
         $this->salesRepository = $salesRepository;
         $this->customerRepository = $customerRepository;
+        $this->salesInvoiceProductDetailsRepository = $salesInvoiceProductDetailsRepository;
     }
 
 	public function index()
@@ -31,27 +33,21 @@ class SalesController extends \BaseController {
 
 	public function store()
 	{
-        //$this->salesInvoiceForm->validate(Input::all());
-
         if(Input::has('customer_id') && $this->customerRepository->find(Input::get('customer_id'), ['id']))
         {
-            $this->salesRepository->create(Input::all());
+            return $this->salesRepository->create(Input::all());
         }
 	}
 
 	public function show($id)
 	{
-	}
+        $sales_invoice = $this->salesRepository->find($id);
 
-	public function edit($id)
-	{
-	}
+        $product_details = $this->salesInvoiceProductDetailsRepository->findAllByInvoiceIdWithProducts($id);
+        foreach($product_details as $row) {
+            $row->serial_numbers = $this->salesInvoiceProductDetailsRepository->findAllSerialByInvoiceDetailsId($row->id, $row->product_id);
+        }
 
-	public function update($id)
-	{
-	}
-
-	public function destroy($id)
-	{
+        return View::make('sales.show', compact('sales_invoice', 'product_details'));
 	}
 }

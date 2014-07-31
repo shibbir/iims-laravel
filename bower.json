@@ -16,14 +16,14 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "2.*",
-    "bootstrap": "3.*",
-    "fontawesome": "4.*",
-    "angular": null,
-    "angular-i18n": null,
-    "modernizr": "2.*",
-    "html5shiv": null,
-    "toastr": null,
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.2.0",
+    "fontawesome": "~4.1.0",
+    "angular": "~1.2.21",
+    "angular-i18n": "~1.2.21",
+    "modernizr": "~2.8.3",
+    "html5shiv": "~3.7.2",
+    "toastr": "~2.0.3",
     "lodash": "~2.4.1"
   }
 }

@@ -16,6 +16,7 @@ class CreateSalesTable extends Migration {
             $table->decimal('total_amount')->default(0);
             $table->decimal('net_payable_amount')->default(0);
             $table->integer('customer_id');
+            $table->integer('created_by');
 			$table->timestamps();
 		});
 	}

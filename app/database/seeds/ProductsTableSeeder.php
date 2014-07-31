@@ -31,7 +31,7 @@ class ProductsTableSeeder extends Seeder {
                 ProductMetadata::create([
                     'product_id'  => $product->id,
                     'serial'      => $faker->unique()->ean8,
-                    'isAvailable' => true
+                    'is_available' => true
                 ]);
             }
         }

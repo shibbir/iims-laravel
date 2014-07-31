@@ -18,9 +18,10 @@
             <thead>
                 <tr>
                     <th>Invoice Id</th>
+                    <th>Customer</th>
                     <th>Created At</th>
                     <th>Updated At</th>
-                    <th>Customer</th>
+                    <th>Created By</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -28,12 +29,12 @@
                 @foreach($sales_invoices as $invoice)
                     <tr>
                         <td>{{ $invoice->id }}</td>
+                        <td>{{ link_to("/customers/{$invoice->customer->id }", $invoice->customer->first_name . ' ' . $invoice->customer->last_name) }}</td>
                         <td>{{ $invoice->created_at }}</td>
                         <td>{{ $invoice->updated_at }}</td>
-                        <td>{{ $invoice->customer_id }}</td>
+                        <td>{{ link_to("/users/{$invoice->user->id }", $invoice->user->name) }}</td>
                         <td>
-                            {{ link_to("/sales/{$invoice->id }", 'Show', ['class' => 'btn btn-info btn-sm']) }}
-                            {{ link_to("/sales/{$invoice->id }/edit", 'Edit', ['class' => 'btn btn-primary btn-sm']) }}
+                            {{ link_to("/sales/{$invoice->id }", 'Details', ['class' => 'btn btn-info btn-sm']) }}
                         </td>
                     </tr>
                 @endforeach

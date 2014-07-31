@@ -67,4 +67,12 @@ class ProductRepository implements IProductRepository {
         $product = Product::find($id);
         $product->delete();
     }
+
+    public function updateQuantity($product_id, $quantity)
+    {
+        $product = Product::findOrFail($product_id);
+        $product->quantity = $quantity;
+
+        $product->save();
+    }
 }

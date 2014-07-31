@@ -29,7 +29,7 @@
                 @foreach($product_metadata_collection as $product_metadata)
                     <tr>
                         <td>{{ $product_metadata->serial }}</td>
-                        <td>{{ $product_metadata->isAvailable ? 'Yes' : 'No' }}</td>
+                        <td>{{ $product_metadata->is_available ? 'Yes' : 'No' }}</td>
                         <td>{{ $product_metadata->updated_at }}</td>
                     </tr>
                 @endforeach

@@ -29,15 +29,23 @@
     <div ng-controller="BaseCtrl">
         @include('shared.navigation')
         <div class="container content">
-            @yield('breadcrumb')
-            @yield('content')
+            <div class="row">
+                <div class="col-xs-12">
+                    @yield('breadcrumb')
+                    @yield('content')
+                </div>
+            </div>
         </div>
         <div class="container">
-            <p class="pull-right">
-                Copyright &copy;
-                <?=(2013 == date('Y')) ? 2013 : "2013 &#8211; " . date('Y')?>
-                <a href="http://shibbir.net/" target="blank">Shibbir Ahmed</a>. All rights reserved.
-            </p>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="pull-right">
+                        Copyright &copy;
+                        <?=(2013 == date('Y')) ? 2013 : "2013 &#8211; " . date('Y')?>
+                        <a href="http://shibbir.net/" target="blank">Shibbir Ahmed</a>. All rights reserved.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
     {{ HTML::script('bower_components/jquery/dist/jquery.js') }}

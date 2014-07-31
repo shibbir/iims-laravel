@@ -12,7 +12,7 @@ class CreateProductMetadataTable extends Migration {
 			$table->increments('id');
             $table->integer('product_id');
             $table->string('serial')->unique();
-            $table->boolean('isAvailable');
+            $table->boolean('is_available');
 			$table->timestamps();
 		});
 	}

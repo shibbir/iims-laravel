@@ -15,10 +15,10 @@ class ProductMetadataRepository implements IProductMetadataRepository {
         return ProductMetadata::whereSerial($serial)->first();
     }
 
-    public function update($id, $model)
+    public function updateIsAvailableInProductMetadata($id, $is_available)
     {
         $productMetadata = ProductMetadata::findOrFail($id);
-        $productMetadata->fill($model);
+        $productMetadata->is_available = $is_available;
 
         $productMetadata->save();
     }

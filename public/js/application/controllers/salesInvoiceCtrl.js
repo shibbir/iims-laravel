@@ -296,9 +296,8 @@
                             discount: $scope.data.discount,
                             service_charge: $scope.data.serviceCharge
                         };
-                        apiService.post("/sales/", data).success(function() {
-                            notifierService.notifySuccess("Sales invoice created successfully.");
-                            $scope.initSalesInvoice();
+                        apiService.post("/sales/", data).success(function(salesId) {
+                            window.location = "/sales/" + salesId;
                         }).error(function() {
                             notifierService.notifyError("Oops! Something happened.");
                         });

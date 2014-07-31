@@ -38,5 +38,5 @@ Route::resource('categories.products', 'ProductsController');
 Route::resource('suppliers', 'SuppliersController');
 
 # Invoices
-Route::resource('sales', 'SalesController');
-Route::resource('purchases', 'PurchasesController');
+Route::resource('sales', 'SalesController', ['only' => ['index', 'create', 'store', 'show']]);
+Route::resource('purchases', 'PurchasesController', ['only' => ['index', 'create', 'store', 'show']]);

@@ -49,12 +49,10 @@ textarea {
 .red		{ color: #FF0000; }
 .bold 		{ font-weight: bold; }
 .inline		{ display: inline; }
-.textLeft 	{ text-align: left; }
-.textRight 	{ text-align: right; }
 
 .block {
 	background: none repeat scroll 0 0 #FFFFFF;
-	box-shadow: 0 2px 9px 0px #CCCCCC;
+	box-shadow: 0 2px 9px 0 #CCCCCC;
 	margin-bottom: 15px;
 	padding: 10px;
 }
@@ -75,6 +73,7 @@ textarea {
     margin-bottom: 15px;
     min-height: 370px;
     padding: 20px 15px 15px;
+    box-shadow: 0 2px 9px 0 #cccccc;
 }
 
 ul.flexipage {

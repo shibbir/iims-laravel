@@ -45,7 +45,7 @@ class ProductsController extends \BaseController {
         return View::make('products.index', compact('products', 'category', 'supplier'));
 	}
 
-	public function create($category_id)
+	public function create($category_id = 1)
 	{
         $selected_category_id = $category_id;
         $categories = $this->categoryRepository->findAllAsList('title', 'id');
