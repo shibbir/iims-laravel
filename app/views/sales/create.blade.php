@@ -8,7 +8,7 @@
 
     <div data-ng-controller="SalesInvoiceCtrl">
         @include('sales.serial-manager-modal')
-        <h2>Sale Invoice Create Form</h2>
+        <h2>Sales Invoice Create Form</h2>
         <hr />
 
         <div id="customerSection">
@@ -93,7 +93,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Title</th>
-                                    <th>Available</th>
+                                    <th>Available Quantity</th>
                                     <th>Last Updated</th>
                                     <th>Action</th>
                                 </tr>

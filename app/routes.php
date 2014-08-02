@@ -19,7 +19,9 @@ Route::get('profile', ['as' => 'profile', 'uses' => 'UsersController@profile']);
 Route::resource('users', 'UsersController');
 
 # Organization
-Route::resource('organizations', 'OrganizationsController', ['only' => ['show', 'update']]);
+Route::get('organization', ['as' => 'organization', 'uses' => 'OrganizationController@show']);
+Route::get('organization/edit', 'OrganizationController@edit');
+Route::patch('organization', 'OrganizationController@update');
 
 # Customer
 Route::resource('customers', 'CustomersController');

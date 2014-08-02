@@ -7,74 +7,83 @@
 @section('content')
     <div class="row" data-ng-controller="dashboardCtrl">
         <div class="col-xs-12 col-md-6">
-            <div class="widget">
-                <div class="widget-header"><h4>Quick Dashboard</h4></div>
-                <div class="widget-body">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <i class="fa fa-anchor fa-lg"></i>
+                    Quick Dashboard
+                </div>
+                <div class="panel-body">
                     <ul class="cpanel">
-                        <li><a class="button1" href="profile">My Profile</a></li>
-                        <li><a class="button2" href="users">Staff</a></li>
-                        <li><a class="button3" href="customers">Customer</a></li>
-                        <li><a class="button4" href="inventory">Inventory</a></li>
-                        <li><a class="button5" href="categories">Category</a></li>
-                        <li><a class="button5" href="invoice">Invoice</a></li>
-                        <li><a class="button5" href="suppliers">Supplier</a></li>
+                        <li><a class="button1" href="/profile">Profile</a></li>
+                        <li><a class="button2" href="/users">Staff</a></li>
+                        <li><a class="button3" href="/customers">Customer</a></li>
+                        <li><a class="button4" href="/inventory">Inventory</a></li>
+                        <li><a class="button5" href="/categories">Category</a></li>
+                        <li><a class="button5" href="/sales">Sales Invoice</a></li>
+                        <li><a class="button5" href="/suppliers">Supplier</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="col-xs-12 col-md-6">
-            <div class="widget">
-                <div class="widget-header">
+            <div class="panel panel-info">
+                <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
-                            <h4>Organization Information</h4>
+                            <i class="fa fa-university fa-lg"></i>
+                            Organization Information
                         </div>
-                        <div data-ng-if="organization">
-                            <div class="col-xs-6 col-md-6 textRight">
-                                <a class="btn btn-primary organization-edit-modal" data-target="#ModalOrganizationEdit" data-toggle="modal">Edit</a>
-                            </div>
+                        <div class="col-xs-6 col-md-6 text-right">
+                            <a href="/organization/edit">
+                                <i class="fa fa-pencil"></i>
+                                Edit
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="widget-body">
-                    @include('organization.organization-edit-modal')
-
-                    <div data-ng-if="organization">
-                        <h4 data-ng-bind="organization.title"></h4>
-                        <small data-ng-bind="organization.sub_title"></small>
-                        <address data-ng-bind="organization.address"></address>
+                <div class="panel-body">
+                    @if($organization)
+                        <h4>{{ $organization->title }}</h4>
+                        <small>{{ $organization->sub_title }}</small>
+                        <address>{{ $organization->address }}</address>
                         <p>
                             <span class="label label-primary">Mobile</span>
-                            <span data-ng-bind="organization.mobile"></span>
+                            <span>{{ $organization->mobile }}</span>
                         </p>
                         <p>
                             <span class="label label-primary">Phone</span>
-                            <span data-ng-bind="organization.phone"></span>
+                            <span>{{ $organization->phone }}</span>
                         </p>
                         <p>
                             <span class="label label-info">Email</span>
-                            <span data-ng-bind="organization.email"></span>
+                            <span>{{ $organization->email }}</span>
                         </p>
                         <p>
                             <span class="label label-info">Website</span>
-                            <a target="_blank" href="[[ organization.website ]]" data-ng-bind="organization.website"></a>
+                            <a target="_blank" href="{{ $organization->website }}">{{ $organization->website }}</a>
                         </p>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="widget">
-        <div class="widget-header"><h4>Pie Chart - Inventory category</h4></div>
-        <div class="widget-body">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <i class="fa fa-bar-chart-o fa-lg"></i>
+            Pie Chart - Inventory Categories
+        </div>
+        <div class="panel-body">
             <div id="inventory-chart"></div>
         </div>
     </div>
 
-    <div class="widget">
-        <div class="widget-header"><h4>Bar Chart - Invoice By Year</h4></div>
-        <div class="widget-body">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <i class="fa fa-bar-chart-o fa-lg"></i>
+            Bar Chart - Invoice By Year
+        </div>
+        <div class="panel-body">
             <label class="control-label" for="ProductCategory">Select a year</label>
             <select class="invoice-per-year input-small">
                 <?php for($year = date('Y'); $year >= 2012; $year--):?>

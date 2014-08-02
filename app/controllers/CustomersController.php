@@ -2,17 +2,20 @@
 
 use IIMS\Forms\Customer;
 use IIMS\Interfaces\ICustomerRepository;
+use IIMS\Interfaces\ISalesRepository;
 
 class CustomersController extends \BaseController {
 
     protected $customerForm;
     protected $customerRepository;
+    protected $salesRepository;
 
-    function __construct(ICustomerRepository $customerRepository, Customer $customerForm)
+    function __construct(ICustomerRepository $customerRepository, ISalesRepository $salesRepository, Customer $customerForm)
     {
         $this->beforeFilter('auth');
         $this->customerForm = $customerForm;
         $this->customerRepository = $customerRepository;
+        $this->salesRepository = $salesRepository;
     }
 
 	public function index()
@@ -43,7 +46,8 @@ class CustomersController extends \BaseController {
 	public function show($id)
 	{
         $customer = $this->customerRepository->find($id);
-        return View::make('customers.show')->withCustomer($customer);
+        $invoices = $this->salesRepository->findByCustomerId($id);
+        return View::make('customers.show', compact('customer', 'invoices'));
 	}
 
 	public function edit($id)

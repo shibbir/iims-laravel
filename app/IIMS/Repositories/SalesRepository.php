@@ -120,4 +120,9 @@ class SalesRepository implements ISalesRepository {
         $sales_invoice = Sales::find($id);
         $sales_invoice->delete();
     }
+
+    public function findByCustomerId($customer_id)
+    {
+        return Sales::with('user')->whereCustomerId($customer_id)->paginate(15);
+    }
 }

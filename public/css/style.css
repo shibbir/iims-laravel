@@ -1,9 +1,10 @@
 /********************************** START => OVERRIDE DEFAULT BOOTSTRAP CSS ************************************************/
 body {
-    background: #FFFFFF url("../img/body-bg.png") repeat scroll 0 0;
     margin: 0;
-    font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 13px;
+    background: none repeat scroll 0 0 #f5f5f5;
+    color: #34495e;
+    font-family: 'Roboto',sans-serif;
 }
 
 input[type='number'] {
@@ -28,6 +29,10 @@ hr 								{ border-top-color: #DDDDDD; }
 textarea {
 	box-shadow: 0 1px 5px #999999 inset;
     padding: 10px;
+}
+
+.tab-content {
+    padding-top: 15px;
 }
 
 /********************************** END => OVERRIDE DEFAULT BOOTSTRAP CSS ************************************************/
@@ -105,37 +110,11 @@ button::-moz-focus-inner {
 
 /********************************** END => HELPER CSS ************************************************/
 
-/********************************** START => WIDGET CSS ************************************************/
-
-.widget {
-	margin-bottom: 10px;
-	box-shadow: 0 3px 9px 0px #CCCCCC;
-}
-.widget-header {
-	-moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background: linear-gradient(to bottom, #FFFFFF 0%, #F5F5F5 100%) repeat scroll 0 0 transparent;
-    border-image: none;
-    border: 1px solid #C9C9C9;
-    border-bottom-width: 0;
-    box-shadow: 0 1px 0 #FFFFFF inset;
-    height: 38px;
-    line-height: 38px;
-    padding: 0 15px;
-}
-.widget-body {
-	background-color: #FDFDFD;
-    border: 1px solid #C9C9C9;
-    box-shadow: 0 1px 0 #FFFFFF inset;
-    padding: 15px 15px 0;
-	min-height: 230px;
-}
-
-/********************************** END => WIDGET CSS ************************************************/
-
 /********************************** START => DASHBOARD CSS ************************************************/
+
+.panel {
+    min-height: 295px;
+}
 
 .button1 {
     background: url("../img/cpanel/user_info_48.png") no-repeat scroll 0 top transparent;
@@ -155,24 +134,17 @@ button::-moz-focus-inner {
 .button6 {
     background: url("../img/cpanel/office_bag_48.png") no-repeat scroll 0 top transparent;
 }
+
+ul.cpanel {
+    padding-left: 0;
+}
 ul.cpanel li {
-	-webkit-box-shadow: inset 0px 1px 0px 0px #fff;
-	box-shadow: inset 0px 1px 0px 0px #fff;
 	text-align: center;
 	list-style: none;
 	display: inline-block;
-	margin: 0 2px 15px 0;
-	background: #f9f9f9;
-	background: -moz-linear-gradient(top, #f9f9f9 0%, #efefef 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f9f9f9), color-stop(100%,#efefef));
-	background: -webkit-linear-gradient(top, #f9f9f9 0%,#efefef 100%);
-	background: -o-linear-gradient(top, #f9f9f9 0%,#efefef 100%);
-	background: -ms-linear-gradient(top, #f9f9f9 0%,#efefef 100%);
-	background: linear-gradient(top, #f9f9f9 0%,#efefef 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#efefef',GradientType=0 );
-	border: 1px solid #e2e2e2;
+	margin: 0 0 15px;
 }
-ul.cpanel li a .label{
+ul.cpanel li a .label {
 	position: absolute;
 	right: -5px;
 	top: -5px;
@@ -189,12 +161,7 @@ ul.cpanel li a {
 }
 ul.cpanel li a:hover {
 	text-decoration: none;
-}
-ul.cpanel li:hover {
-	border-color:#d2d2d2;
-	-moz-box-shadow: 0 0 6px #ccc;
-	-webkit-box-shadow: 0 0 6px #ccc;
-	box-shadow: 0 0 6px #ccc;
+    color: green;
 }
 
 /********************************** END => DASHBOARD CSS ************************************************/

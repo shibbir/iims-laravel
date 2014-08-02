@@ -1,7 +1,7 @@
 "use strict";
 
 (function(app) {
-    app.controller("dashboardCtrl", ["$scope", "apiService", "notifierService", function($scope, apiService, notifierService) {
+    app.controller("dashboardCtrl", ["$scope", "apiService", function($scope, apiService) {
         var highChartsPie = function (target, plotData) {
             Highcharts.getOptions().colors = $.map(Highcharts.getOptions().colors, function(color) {
                 return {
@@ -119,11 +119,6 @@
                 });
             });
         };
-        $scope.getOrganization = function() {
-            apiService.get("/organizations/1").then(function(result) {
-                $scope.organization = result.data;
-            });
-        }();
         $scope.getInventoryChartData = function() {
             var data = [
                 ["Miscellaneous", 19],
@@ -152,12 +147,5 @@
             };
             highchartsInvoiceByYear(2013, data, "invoice-chart");
         }();
-        $scope.updateOrganization = function() {
-            apiService.patch("/organizations/" + $scope.organization.id, $("form[name=OrganizationEditForm]").serialize()).success(function() {
-                notifierService.notifySuccess("Record updated successfully.");
-            }).error(function() {
-                notifierService.notifyError("Something happened");
-            });
-        };
     }]);
 })(_app);
