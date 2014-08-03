@@ -15,11 +15,7 @@
     <meta property="og:image" content="" />
     <meta property="og:description" content="IIMS is a simple easy-to-use, online inventory and invoice management system that also help you manage your customers, employees, products." />
 
-    {{ HTML::style('bower_components/bootstrap/dist/css/bootstrap.css') }}
-    {{ HTML::style('bower_components/fontawesome/css/font-awesome.css') }}
-    {{ HTML::style('bower_components/toastr/toastr.css') }}
-    {{ HTML::style('css/jquery.cleditor.css') }}
-    {{ HTML::style('css/style.css') }}
+    {{ HTML::style('build/css/site.min.css') }}
 
     <!--[if lt IE 9]>
     {{ HTML::script('bower_components/html5shiv/dist/html5shiv.js') }}
@@ -48,16 +44,8 @@
             </div>
         </div>
     </div>
-    {{ HTML::script('bower_components/jquery/dist/jquery.js') }}
-    {{ HTML::script('bower_components/bootstrap/dist/js/bootstrap.js') }}
-    {{ HTML::script('bower_components/lodash/dist/lodash.js') }}
-    {{ HTML::script('bower_components/angular/angular.js') }}
-    {{ HTML::script('bower_components/angular-i18n/angular-locale_bn-bd.js') }}
-    {{ HTML::script('bower_components/toastr/toastr.js') }}
-    {{ HTML::script('bower_components/lodash/dist/lodash.js') }}
-    {{ HTML::script('js/libs/jquery.cleditor.js') }}
-    {{ HTML::script('js/libs/highcharts.src.js') }}
-    {{ HTML::script('js/libs/jquery.printPage.js') }}
+    {{ HTML::script('build/js/libs.min.js') }}
+
     {{ HTML::script('js/application/app.js') }}
     {{ HTML::script('js/application/services/apiService.js') }}
     {{ HTML::script('js/application/services/productService.js') }}

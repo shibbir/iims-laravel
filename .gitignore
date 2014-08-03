@@ -9,13 +9,4 @@ Thumbs.db
 .idea
 node_modules
 public/bower_components
-public/css/printer.css
-public/css/printer.min.css
-public/css/all.css
-public/css/all.min.css
-public/js/all.js
-public/js/all.min.js
-public/css/welcome.css
-public/css/welcome.min.css
-public/js/welcome.js
-public/js/welcome.min.js
+public/build

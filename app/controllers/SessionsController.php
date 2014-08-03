@@ -17,7 +17,7 @@ class SessionsController extends \BaseController {
         {
             return Redirect::route('dashboard');
         }
-        return View::make('sessions.create');
+        return View::make('layouts.login');
 	}
 
     public function store()

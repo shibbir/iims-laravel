@@ -1,8 +1,14 @@
 {
+  "name": "IIMS",
+  "version": "1.0.0",
+  "description": "Inventory & Invoice Management System",
+  "authors": "Shibbir Ahmed <shibbir.cse@gmail.com>",
   "devDependencies": {
-    "gulp": "^3.8.5",
-    "gulp-concat": "^2.2.0",
-    "gulp-minify-css": "^0.3.6",
+    "del": "^0.1.1",
+    "gulp": "^3.8.7",
+    "gulp-concat": "^2.3.4",
+    "gulp-imagemin": "^0.6.2",
+    "gulp-minify-css": "^0.3.7",
     "gulp-rename": "^1.2.0",
     "gulp-uglify": "^0.3.1"
   }
