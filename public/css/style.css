@@ -17,7 +17,6 @@ input::-webkit-inner-spin-button {
 }
 
 a								{ cursor: pointer; }
-a:hover							{ text-decoration: none; }
 h1 								{ margin-bottom: 0.25em; }
 h2 								{ color: #4A515B; margin-bottom: 0.5em; }
 hr 								{ border-top-color: #DDDDDD; }
@@ -33,6 +32,12 @@ textarea {
 
 .tab-content {
     padding-top: 15px;
+}
+
+@media only screen and (min-width : 768px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
 }
 
 /********************************** END => OVERRIDE DEFAULT BOOTSTRAP CSS ************************************************/

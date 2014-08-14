@@ -59,6 +59,28 @@ var paths = {
     images: "public/img/**/*"
 };
 
+var css = function(path, fileName, directory) {
+    directory = directory || "public/build/css";
+
+    return gulp.src(path)
+        .pipe(concat(fileName))
+        .pipe(gulp.dest(directory))
+        .pipe(rename({ suffix: ".min" }))
+        .pipe(minifycss())
+        .pipe(gulp.dest(directory));
+};
+
+var scripts = function(path, fileName, directory) {
+    directory = directory || "public/build/js";
+
+    return gulp.src(path)
+        .pipe(concat(fileName))
+        .pipe(gulp.dest(directory))
+        .pipe(rename({ suffix: ".min" }))
+        .pipe(uglify())
+        .pipe(gulp.dest(directory));
+};
+
 gulp.task("clean", function(cb) {
     del(["public/build"], cb);
 });
@@ -75,48 +97,23 @@ gulp.task("Images", ["clean"], function() {
 });
 
 gulp.task("SiteCSS", ["clean"], function() {
-    return gulp.src(paths.css.site)
-        .pipe(concat("site.css"))
-        .pipe(gulp.dest("public/build/css"))
-        .pipe(rename({ suffix: ".min" }))
-        .pipe(minifycss())
-        .pipe(gulp.dest("public/build/css"));
+    return css(paths.css.site, "site.css");
 });
 
 gulp.task("LibraryScripts", ["clean"], function() {
-    return gulp.src(paths.scripts.libs)
-        .pipe(concat("libs.js"))
-        .pipe(gulp.dest("public/build/js"))
-        .pipe(rename({ suffix: ".min" }))
-        .pipe(uglify())
-        .pipe(gulp.dest("public/build/js"));
+    return scripts(paths.scripts.libs, "libs.js");
 });
 
 gulp.task("AppScripts", ["clean"], function() {
-    return gulp.src(paths.scripts.app)
-        .pipe(concat("app.js"))
-        .pipe(gulp.dest("public/build/js"))
-        .pipe(rename({ suffix: ".min" }))
-        .pipe(uglify())
-        .pipe(gulp.dest("public/build/js"));
+    return scripts(paths.scripts.app, "app.js");
 });
 
 gulp.task("PrintPageCSS", function() {
-    return gulp.src(paths.css.print)
-        .pipe(concat("printer.css"))
-        .pipe(gulp.dest("public/build/css/"))
-        .pipe(rename({ suffix: ".min" }))
-        .pipe(minifycss())
-        .pipe(gulp.dest("public/build/css/"));
+    return css(paths.css.print, "printer.css");
 });
 
 gulp.task("LoginCSS", ["clean"], function() {
-    return gulp.src(paths.css.login)
-        .pipe(concat("login.css"))
-        .pipe(gulp.dest("public/build/css/"))
-        .pipe(rename({ suffix: ".min" }))
-        .pipe(minifycss())
-        .pipe(gulp.dest("public/build/css/"));
+    return css(paths.css.login, "login.css");
 });
 
 gulp.task("Watch", function() {
